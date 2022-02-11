@@ -3,7 +3,8 @@ package Hospital;
 
 /**
  *
- * @author Leonidas Adrian Mendoza Flores
+ * @author Sarahi Guadalupe Silva Molina 
+ *         Leonidas Adrian Mendoza Flores
  */
 public class Medicina {
     String descripcion; //Descripcion de la medicina

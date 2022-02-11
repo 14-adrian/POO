@@ -5,6 +5,7 @@ import java.util.Date;
 /**
  *
  * @author Sarahi Guadalupe Silva Molina
+ *         Leonidas Adrian Mendoza Flores
  */
 public class Medico {
     private String nombre; //Nombre de el medico

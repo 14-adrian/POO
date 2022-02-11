@@ -3,7 +3,8 @@ package Hospital;
 import java.util.Date;
 /**
  *
- * @author Leonidas Adrian Mendoza Flores
+ * @author Sarahi Guadalupe Silva Molina
+ *         Leonidas Adrian Mendoza Flores
  */
 public class SolicitudCita {
     char idSolicitud; //Numero de identificacion de solicitud
