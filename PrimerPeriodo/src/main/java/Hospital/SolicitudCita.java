@@ -1,4 +1,4 @@
-package Portafolio1;
+package Hospital;
 
 import java.util.Date;
 /**

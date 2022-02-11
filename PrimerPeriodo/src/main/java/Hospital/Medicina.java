@@ -1,5 +1,5 @@
 
-package Portafolio1;
+package Hospital;
 
 /**
  *
