@@ -15,20 +15,20 @@ public class Medicina {
         this.descripcion = desc;
         this.idMedicina = id;
     }
-    
-    public String getDescripcion() //Obtener descripcion
+    //Metodos get y set
+    public String getDescripcion() 
     {
         return descripcion;
     }
-    public void setDescripcion(String descripcion) //Modificar Descripcion
+    public void setDescripcion(String descripcion) 
     {
         this.descripcion = descripcion;
     }
-    public char getIdMedicina() //Obtener Id de Medicina
+    public char getIdMedicina()
     {
         return idMedicina;
     }
-    public void setIdMedicina(char id) //Modificar Id de Medicina
+    public void setIdMedicina(char id)
     {
         this.idMedicina = id;
     }

@@ -25,41 +25,42 @@ public class Medico {
         this.correo=correo;
         this.fNacimiento=fnacimiento;  
     }
-    public String getNombre(){ //Obtener nombre del medico
+    //Metodos get y set
+    public String getNombre(){
         return nombre;
     }
-    public void setNombre(String nombre){ //Modificar nombre del medico
+    public void setNombre(String nombre){ 
        this.nombre=nombre;
        
     }
-    public String getEspecialidad(){ //Obtener especialidad del medico
+    public String getEspecialidad(){
         return especialidad; 
     }
-    public void setEspecialidad(String especialidad){ //modificar especialidad del medico
+    public void setEspecialidad(String especialidad){
        this.especialidad=especialidad;
     }
-    public int getIdMedico(){ //Obtener id del medico
+    public int getIdMedico(){
        return IdMedico;
     }
-    public void setIdMedico(int id){ //Modificar id del medico
+    public void setIdMedico(int id){
        this.IdMedico=id;
     }
-    public String getTelefono(){ //Obtener el telefono del medico
+    public String getTelefono(){
        return telefono;
     }
-    public void setTelefono(String telefono){ //Modificar el telefono del medico
+    public void setTelefono(String telefono){
         this.telefono=telefono;
     }
-   public String getCorreo(){ //Obtener correo del medico
+   public String getCorreo(){
         return correo;
     }
-    public void setcorreo(String correo){ //Modificar correo del medico
+    public void setcorreo(String correo){
        this.correo=correo;
     }
-    public Date getFNacimiento(){ //Obtener la fecha de nacimiento
+    public Date getFNacimiento(){
        return fNacimiento;
     }
-     public void setFNacimiento(Date fnacimiento){ //Modificar la fecha de nacimiento
+     public void setFNacimiento(Date fnacimiento){ 
        this.fNacimiento=fnacimiento;
     }
 }

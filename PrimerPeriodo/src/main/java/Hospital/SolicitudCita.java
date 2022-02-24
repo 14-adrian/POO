@@ -13,8 +13,10 @@ public class SolicitudCita {
     Date hora; //Hora de la cita
     String nombreMedico; //Nombre del medico asignado
     char tipoConsulta; //Tipo de la consulta
+    Paciente paciente;
+    Medico medico;
     
-    public SolicitudCita(char id, char estado, Date fecha, Date hora, String nMedico, char tipo) //Metodo para crear un atributo con la clase
+    public SolicitudCita(char id, char estado, Date fecha, Date hora, String nMedico, char tipo, Paciente paciente, Medico medico) //Metodo para crear un atributo con la clase
     {
         this.idSolicitud = id;
         this.estado = estado;
@@ -23,54 +25,54 @@ public class SolicitudCita {
         this.nombreMedico = nMedico;
         this.tipoConsulta = tipo;
     }
-    
-    public char getIdSolicitud() //Obtener Id de solicitud
+    //Metodos get y set
+    public char getIdSolicitud()
     {
          return idSolicitud;
     }
-    public void setIdSolicitud(char id) //Modificar Id de solicitud
+    public void setIdSolicitud(char id)
     {
         this.idSolicitud = id;
     }
-    public char getEstado() //Obtener estado de la solicitud
+    public char getEstado() 
     {
         return estado;
     }
-    public void setEstado(char estado)  //Modificar estado de la solicitud
+    public void setEstado(char estado) 
     {
         this.estado = estado;
     }
-    public Date getFecha() //Obtener fecha de la solicitud
+    public Date getFecha()
     {
         return fecha;
     } 
-    public void setFecha(Date fecha)  //Modificar fecha de la solicitud
+    public void setFecha(Date fecha) 
     {
         this.fecha = fecha;
     } 
-    public Date getHora() //Obtener hora de la solicitud
+    public Date getHora()
     {
         return hora;
     } 
-    public void setHora(Date hora)  //Modificar hora de la solicitud
+    public void setHora(Date hora) 
     {
         this.hora = hora;
     } 
-    public String getMedicoNombre()  //Obtener nombre del medico asignado
+    public String getMedicoNombre() 
     {
         return nombreMedico;
     }
-    public void setNombreMedico(String medico)  //Cambiar el medico asignado
+    public void setNombreMedico(String medico) 
     {
         this.nombreMedico = medico;
     }
   
-    public char getTipoConsulta() //Obtener el tipo de consulta
+    public char getTipoConsulta()
     {
         return tipoConsulta;
     }
   
-     public void setTipoConsulta(char tipo) //Modificar el tipo de consulta
+     public void setTipoConsulta(char tipo)
     {
         this.tipoConsulta = tipo;
     }

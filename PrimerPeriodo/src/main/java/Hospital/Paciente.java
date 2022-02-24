@@ -15,7 +15,7 @@ public class Paciente {
     private Date fNacimiento; //Fecha de nacimiento del paciente
     private char sexo; //Sexo del paciente
         
-    //Metodo para crear un atributo con la clase
+    //Metodo para crear un objeto con la clase
     public Paciente (String nombre, String apellido, int dui, String telefono, String correo, Date fnacimiento, char sexo)
     {
         this.nombre=nombre;
@@ -26,46 +26,47 @@ public class Paciente {
         this.fNacimiento=fnacimiento;
         this.sexo=sexo;
     }
-    public String getNombre(){ //Obtener nombre del paciente
+    //Metodos get y set
+    public String getNombre(){ 
         return nombre;
     }
-    public void setNombre(String nombre){ //Modificar nombre del paciente
+    public void setNombre(String nombre){ 
         this.nombre=nombre;
     }    
-    public String getApellido(){ //Obtener nombre del paciente
+    public String getApellido(){ 
         return apellido;
     }
-    public void setApellido(String apellido){ //Modificar nombre del paciente
+    public void setApellido(String apellido){ 
         this.apellido=apellido;
     }
-    public int getDUI(){ //Obtener el numero de DUI del paciente
+    public int getDUI(){ 
     return dui;
     }
-    public void setDUI(int dui){ //Modificar numero de DUI del paciente
+    public void setDUI(int dui){ 
         this.dui=dui;
     }
-    public String getTelefono(){ //Obtener numero de telefono del paciente
+    public String getTelefono(){ 
         return telefono;
     }
-    public void setTelefono(String telefono){ //Obtener numero de telefono del paciente
+    public void setTelefono(String telefono){ 
         this.telefono=telefono;
     }    
-    public String getCorreo(){ //Obtener correo del paciente
+    public String getCorreo(){ 
         return correo;
     }
-    public void setCorreo(String correo){ //Modificar correo del paciente
+    public void setCorreo(String correo){ 
     this.correo=correo;
     }
-    public Date getFNacimiento(){ //Obtener fecha de nacimiento del paciente
+    public Date getFNacimiento(){ 
         return fNacimiento;
     }
-    public void setFNacimiento(Date fnacimiento){ //Modificar fecha de nacimiento del paciente
+    public void setFNacimiento(Date fnacimiento){ 
         this.fNacimiento=fnacimiento;
     }       
-    public char getSexo(){ //Obtener el sexo del paciente
+    public char getSexo(){ 
         return sexo;
     }
-    public void setSexo(char sexo){ //Modificar el sexo del paciente
+    public void setSexo(char sexo){ 
         this.sexo=sexo;
     }
 }
