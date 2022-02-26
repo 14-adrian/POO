@@ -8,9 +8,9 @@ package Hospital;
  */
 public class Medicina {
     String descripcion; //Descripcion de la medicina
-    char idMedicina; //Numero de Identificacion de medicina
+    String idMedicina; //Numero de Identificacion de medicina
     
-    public Medicina(String desc, char id) //Metodo para crear un atributo con la clase
+    public Medicina(String desc, String id) //Metodo para crear un atributo con la clase
     {
         this.descripcion = desc;
         this.idMedicina = id;
@@ -24,11 +24,11 @@ public class Medicina {
     {
         this.descripcion = descripcion;
     }
-    public char getIdMedicina()
+    public String getIdMedicina()
     {
         return idMedicina;
     }
-    public void setIdMedicina(char id)
+    public void setIdMedicina(String id)
     {
         this.idMedicina = id;
     }
