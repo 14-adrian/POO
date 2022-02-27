@@ -9,5 +9,4 @@ package Hospital;
 public interface HInterface {
     //Mensaje de error para la clase hospital
     String MSJERROR="Ingrese una opcion valida";
-
 }

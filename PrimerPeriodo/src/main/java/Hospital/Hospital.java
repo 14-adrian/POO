@@ -15,8 +15,30 @@ public class Hospital implements HInterface {
         //Listas
         ArrayList<Paciente> pacientes = new ArrayList<Paciente>();
         ArrayList<Medicina> medicina = new ArrayList<Medicina>();
+        //Ejemplo lista medicina
+        Medicina med1 = new Medicina("acetaminofen", 123);
+        Medicina med2 = new Medicina("Ibuprofeno", 999);
+        Medicina med3 = new Medicina("Carvidopa", 892);
+        Medicina med4 = new Medicina("Bicarbonato", 210);
+        Medicina med5 = new Medicina("SodioCaps", 320);
+        Medicina med6 = new Medicina("Salva", 344);
+        Medicina med7 = new Medicina("Tramaset", 122);
+        medicina.add(med1);
+        medicina.add(med2);
+        medicina.add(med3);
+        medicina.add(med4);
+        medicina.add(med5);
+        medicina.add(med6);
+        medicina.add(med7);
+        //Ejemplo lista paciente
         Paciente _pac1 = new Paciente("Leonidas", "Mendoza", 123456789, "7777-7777", "ssss@fff.com", addFecha("14/02/2001"), "m");
+        Paciente _pac2 = new Paciente("Alberto", "Lopez", 111114444, "7755-4444", "lambda@fff.com", addFecha("25/06/2000"), "m");
+        Paciente _pac3 = new Paciente("Sara", "Lopez", 444433322, "5555-5555", "sara9@fff.com", addFecha("12/01/1999"), "f");
+        Paciente _pac4 = new Paciente("Arturo", "Flores", 999999999, "7333-7777", "A911@fff.com", addFecha("03/09/2003"), "m");
         pacientes.add(_pac1);
+        pacientes.add(_pac2);
+        pacientes.add(_pac3);
+        pacientes.add(_pac4);
         ArrayList<Medico> medicos = new ArrayList<Medico>();
         ArrayList<SolicitudCita> citas = new ArrayList<SolicitudCita>();
         //Id para agregar a los objetos
@@ -48,12 +70,82 @@ public class Hospital implements HInterface {
                         switch(opMedicos){
                             //Agregar medico
                             case 1:
+                                System.out.println("Ingrese el Nombre:");
+                                String nombre = entrada.next();
+                                System.out.println("Ingrese la especialidad:");
+                                String especialidad = entrada.next();
+                                System.out.println("Ingrese el numero de identificacion:");
+                                int idMed = entrada.nextInt();
+                                System.out.println("Ingrese el numero de telefono:");
+                                String telefono = entrada.next();
+                                System.out.println("Ingrese el correo:");
+                                String correo = entrada.next();
+                                System.out.println("Ingrese la fecha de nacimiento(dd/mm/aaaa):");
+                                String fNac = entrada.next();
+                                Date fecha = addFecha(fNac);
+                                System.out.println("Ingrese el sexo:");
+                                String sexo = entrada.next();
+                                
+                                Paciente _paciente = new Paciente(nombre, especialidad, idMed, telefono, correo, fecha, sexo);
+                                pacientes.add(_paciente);
+                                break;
                             //Eliminar medico
                             case 2:
+                                if(!medicos.isEmpty()){
+                                    boolean borrando = true;
+                                    int n = -1;
+                                    while(borrando){
+                                        System.out.println("Ingrese el numero de identificacion del medico que desea eliminar:");
+                                        int idDel = entrada.nextInt();
+                                        n = Medico.busquedaMedico(medicos, idDel);
+                                        if(n == -1)System.out.println("El medico no existe, ingrese un numero de identificacion correcto correcto!");
+                                        else borrando = false;
+                                    }
+                                    medicos.remove(n);
+                                    System.out.println("Datos eliminados!");
+                                }
+                                else System.out.println("No existen datos para eliminar");
+                                break;
                             //Buscar medico
                             case 3:
+                                if(!medicos.isEmpty()){
+                                boolean buscando = true;
+                                int n = -1;
+                                    while(buscando){
+                                        System.out.println("Ingrese el numero de DUI del paciente que desea buscar:");
+                                        int idSrch = entrada.nextInt();
+                                        n = Medico.busquedaMedico(medicos, idSrch);
+                                        if(n == -1)System.out.println("El producto no existe, por favor ingrese un numero de identificacion correcto!");
+                                        else buscando = false;
+                                    }
+                                    System.out.println("Nombre:\t\tEspecialidad:\tIDMedico:\tTelefono:\tCorreo:\tFecha Nacimiento:\tSexo:");
+                                    System.out.print(medicos.get(n).getNombre()+"\t");
+                                    System.out.print(medicos.get(n).getEspecialidad()+"\t\t");
+                                    System.out.print(medicos.get(n).getIdMedico()+"\t\t");
+                                    System.out.print(medicos.get(n).getTelefono()+"\t\t");
+                                    System.out.print(medicos.get(n).getCorreo()+"\t\t");
+                                    String fnac = fechaFormato(medicos.get(n).getFNacimiento());
+                                    System.out.print(fnac+"\t\t");
+                                    System.out.print(medicos.get(n).getSexo()+"\n");
+                                }
+                                break;
                             //Mostrar Medicos
                             case 4:
+                                if(!medicos.isEmpty()){
+                                    String fnac;
+                                    System.out.println("Nombre:\t\tEspecialidad:\tIDMedico:\tTelefono:\tCorreo:\tFecha Nacimiento:\tSexo:");
+                                    for(int i = 0; i < medicos.size(); i++){
+                                        System.out.print(medicos.get(i).getNombre()+"\t");
+                                        System.out.print(medicos.get(i).getEspecialidad()+"\t\t");
+                                        System.out.print(medicos.get(i).getIdMedico()+"\t\t");
+                                        System.out.print(medicos.get(i).getTelefono()+"\t\t");
+                                        System.out.print(medicos.get(i).getCorreo()+"\t\t");
+                                        fnac = fechaFormato(medicos.get(i).getFNacimiento());
+                                        System.out.print(fnac+"\t\t");
+                                        System.out.print(medicos.get(i).getSexo()+"\n");
+                                    }
+                                }
+                                break;
                             //Salir
                             case 5:
                                 sOpcion = false;
@@ -102,10 +194,63 @@ public class Hospital implements HInterface {
                                 break;
                             //Eliminar cita
                             case 2:
+                             if(!citas.isEmpty()){
+                                boolean borrando = true;
+                                int n = -1;
+                                while(borrando){
+                                    System.out.println("Ingrese el numero de identificacion de la cita que desea eliminar:");
+                                    int idDel = entrada.nextInt();
+                                    n = SolicitudCita.busquedaCita(citas, idDel);
+                                    if(n == -1)System.out.println("El id de la cita no existe, por favor ingrese un id correcto!");
+                                    else borrando = false;
+                                }
+                                citas.remove(n);
+                                System.out.println("Datos eliminados!");
+                                }
+                                else System.out.println("No existen datos para eliminar");
+                                break;
                             //Buscar cita
                             case 3:
+                                if(!citas.isEmpty()){
+                                boolean buscando = true;
+                                int n = -1;
+                                    while(buscando){
+                                        System.out.println("Ingrese el numero de identificacion de la cita que desea buscar:");
+                                        int idSrch = entrada.nextInt();
+                                        n = SolicitudCita.busquedaCita(citas, idSrch);
+                                        if(n == -1)System.out.println("El producto no existe, por favor ingrese un numero de identificacion correcto!");
+                                        else buscando = false;
+                                    }
+                                    String f;
+                                    System.out.println("ID::\t\tEstado:\tFecha:\tMedico:\tTipo:\tPaciente:");
+                                    System.out.print(citas.get(n).getIdSolicitud()+"\t");
+                                    System.out.print(citas.get(n).getEstado()+"\t\t");
+                                    f = fechaFormato(citas.get(n).getFecha());
+                                    System.out.print(f+"\t\t");
+                                    System.out.print(citas.get(n).getMedicoNombre()+"\t\t");
+                                    System.out.print(citas.get(n).getTipoConsulta()+"\t\t");
+                                    System.out.print(citas.get(n).getPaciente().getNombre()+"\n");
+                                    
+                                    
+                                }
+                                else System.out.println("No existen datos para buscar");
+                                break;
                             //Mostrar cita
                             case 4:
+                                if(!citas.isEmpty()){
+                                    String f;
+                                    System.out.println("ID::\t\tEstado:\tFecha:\tMedico:\tTipo:\tPaciente:");
+                                    for(int i = 0; i < citas.size(); i++){
+                                        System.out.print(citas.get(i).getIdSolicitud()+"\t");
+                                        System.out.print(citas.get(i).getEstado()+"\t\t");
+                                        f = fechaFormato(citas.get(i).getFecha());
+                                        System.out.print(f+"\t\t");
+                                        System.out.print(citas.get(i).getMedicoNombre()+"\t\t");
+                                        System.out.print(citas.get(i).getTipoConsulta()+"\t\t");
+                                        System.out.print(citas.get(i).getPaciente().getNombre()+"\n");
+                                    }
+                                }
+                                break;
                             //Salir
                             case 5:
                                 sOpcion = false;

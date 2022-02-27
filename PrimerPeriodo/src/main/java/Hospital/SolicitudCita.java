@@ -75,7 +75,7 @@ public class SolicitudCita {
     {
         this.paciente = pac;
     }
-    public static int busquedaPaciente(ArrayList<SolicitudCita> a, int id)
+    public static int busquedaCita(ArrayList<SolicitudCita> a, int id)
     {
         int central, alto, bajo;
         int valorCentral;

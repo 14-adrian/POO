@@ -15,9 +15,10 @@ public class Medico {
     private String telefono; //Numero de telefono del medico
     private String correo; //Correo del medico
     private Date fNacimiento; //Fecha de nacimiento del medico
+    private String sexo;
     
     //Metodo para crear un atributo con la clase
-    public Medico (String nombre, String especialidad, int idMedico, String telefono, String correo, Date fnacimiento)
+    public Medico (String nombre, String especialidad, int idMedico, String telefono, String correo, Date fnacimiento, String sexo)
     {
         this.nombre=nombre;
         this.especialidad=especialidad;
@@ -25,6 +26,7 @@ public class Medico {
         this.telefono=telefono;
         this.correo=correo;
         this.fNacimiento=fnacimiento;  
+        this.sexo = sexo;
     }
     //Metodos get y set
     public String getNombre(){
@@ -52,7 +54,7 @@ public class Medico {
     public void setTelefono(String telefono){
         this.telefono=telefono;
     }
-   public String getCorreo(){
+    public String getCorreo(){
         return correo;
     }
     public void setcorreo(String correo){
@@ -64,7 +66,13 @@ public class Medico {
      public void setFNacimiento(Date fnacimiento){ 
        this.fNacimiento=fnacimiento;
     }
-     public static int busquedaPaciente(ArrayList<Medico> a, int id)
+    public String getSexo(){
+        return sexo;
+    }
+    public void setSexo(String _sexo){
+       this.sexo=_sexo;
+    }
+     public static int busquedaMedico(ArrayList<Medico> a, int id)
     {
         int central, alto, bajo;
         int valorCentral;
