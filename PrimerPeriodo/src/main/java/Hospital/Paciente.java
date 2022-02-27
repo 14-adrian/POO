@@ -1,5 +1,6 @@
 
 package Hospital;
+import java.util.ArrayList;
 import java.util.Date;
 /**
  *
@@ -13,10 +14,10 @@ public class Paciente {
     private String telefono; //Telefono del Paciente
     private String correo; //Correo del paciente
     private Date fNacimiento; //Fecha de nacimiento del paciente
-    private char sexo; //Sexo del paciente
+    private String sexo; //Sexo del paciente
         
     //Metodo para crear un objeto con la clase
-    public Paciente (String nombre, String apellido, int dui, String telefono, String correo, Date fnacimiento, char sexo)
+    public Paciente (String nombre, String apellido, int dui, String telefono, String correo, Date fnacimiento, String sexo)
     {
         this.nombre=nombre;
         this.apellido=apellido;
@@ -63,10 +64,27 @@ public class Paciente {
     public void setFNacimiento(Date fnacimiento){ 
         this.fNacimiento=fnacimiento;
     }       
-    public char getSexo(){ 
+    public String getSexo(){ 
         return sexo;
     }
-    public void setSexo(char sexo){ 
+    public void setSexo(String sexo){ 
         this.sexo=sexo;
+    }
+    //Metodo de busqueda
+    public static int busquedaPaciente(ArrayList<Paciente> a, int dui)
+    {
+        int central, alto, bajo;
+        int valorCentral;
+        bajo = 0;
+        alto = a.size();
+        while(bajo<=alto)
+        {
+            central = (bajo + alto)/2;
+            valorCentral = a.get(central).getDUI();
+            if(dui == valorCentral) return central;
+            //else if(dui < valorCentral) alto = central -1;
+            else bajo = central +1;
+        }
+        return -1;
     }
 }

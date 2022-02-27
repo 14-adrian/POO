@@ -1,6 +1,7 @@
 
 package Hospital;
 
+import java.util.ArrayList;
 import java.util.Date;
 /**
  *
@@ -16,7 +17,7 @@ public class Medico {
     private Date fNacimiento; //Fecha de nacimiento del medico
     
     //Metodo para crear un atributo con la clase
-    public Medico (String nombre, String especialidad, int idMedico, String telefono, String correo, Date fnacimiento, char sexo)
+    public Medico (String nombre, String especialidad, int idMedico, String telefono, String correo, Date fnacimiento)
     {
         this.nombre=nombre;
         this.especialidad=especialidad;
@@ -62,5 +63,21 @@ public class Medico {
     }
      public void setFNacimiento(Date fnacimiento){ 
        this.fNacimiento=fnacimiento;
+    }
+     public static int busquedaPaciente(ArrayList<Medico> a, int id)
+    {
+        int central, alto, bajo;
+        int valorCentral;
+        bajo = 0;
+        alto = a.size();
+        while(bajo<=alto)
+        {
+            central = (bajo + alto)/2;
+            valorCentral = a.get(central).getIdMedico();
+            if(id == valorCentral) return central;
+            //else if(dui < valorCentral) alto = central -1;
+            else bajo = central +1;
+        }
+        return -1;
     }
 }

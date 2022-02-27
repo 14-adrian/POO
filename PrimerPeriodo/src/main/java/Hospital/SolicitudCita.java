@@ -1,5 +1,6 @@
 package Hospital;
 
+import java.util.ArrayList;
 import java.util.Date;
 /**
  *
@@ -7,38 +8,36 @@ import java.util.Date;
  *         Leonidas Adrian Mendoza Flores
  */
 public class SolicitudCita {
-    char idSolicitud; //Numero de identificacion de solicitud
-    char estado; //Estado de la solicitud
-    Date fecha; //Fecha de la cita
-    Date hora; //Hora de la cita
-    String nombreMedico; //Nombre del medico asignado
-    char tipoConsulta; //Tipo de la consulta
-    Paciente paciente;
-    Medico medico;
+    private int idSolicitud; //Numero de identificacion de solicitud
+    private String estado; //Estado de la solicitud
+    private Date fecha;//Hora y fecha de la cita
+    private String nombreMedico; //Nombre del medico asignado
+    private String tipoConsulta; //Tipo de la consulta
+    private Paciente paciente; //Paciente
     
-    public SolicitudCita(char id, char estado, Date fecha, Date hora, String nMedico, char tipo, Paciente paciente, Medico medico) //Metodo para crear un atributo con la clase
+    public SolicitudCita(int id, String estado, Date fecha, String nMedico, String tipo, Paciente paciente) //Metodo para crear un atributo con la clase
     {
         this.idSolicitud = id;
         this.estado = estado;
         this.fecha = fecha;
-        this.hora = hora;
         this.nombreMedico = nMedico;
         this.tipoConsulta = tipo;
+        this.paciente = paciente;
     }
     //Metodos get y set
-    public char getIdSolicitud()
+    public int getIdSolicitud()
     {
          return idSolicitud;
     }
-    public void setIdSolicitud(char id)
+    public void setIdSolicitud(int id)
     {
         this.idSolicitud = id;
     }
-    public char getEstado() 
+    public String getEstado() 
     {
         return estado;
     }
-    public void setEstado(char estado) 
+    public void setEstado(String estado) 
     {
         this.estado = estado;
     }
@@ -50,14 +49,6 @@ public class SolicitudCita {
     {
         this.fecha = fecha;
     } 
-    public Date getHora()
-    {
-        return hora;
-    } 
-    public void setHora(Date hora) 
-    {
-        this.hora = hora;
-    } 
     public String getMedicoNombre() 
     {
         return nombreMedico;
@@ -67,13 +58,37 @@ public class SolicitudCita {
         this.nombreMedico = medico;
     }
   
-    public char getTipoConsulta()
+    public String getTipoConsulta()
     {
         return tipoConsulta;
     }
   
-     public void setTipoConsulta(char tipo)
+    public void setTipoConsulta(String tipo)
     {
         this.tipoConsulta = tipo;
+    }
+    public Paciente getPaciente()
+    {
+        return paciente;
+    }
+    public void setPaciente(Paciente pac)
+    {
+        this.paciente = pac;
+    }
+    public static int busquedaPaciente(ArrayList<SolicitudCita> a, int id)
+    {
+        int central, alto, bajo;
+        int valorCentral;
+        bajo = 0;
+        alto = a.size();
+        while(bajo<=alto)
+        {
+            central = (bajo + alto)/2;
+            valorCentral = a.get(central).getIdSolicitud();
+            if(id == valorCentral) return central;
+            //else if(dui < valorCentral) alto = central -1;
+            else bajo = central +1;
+        }
+        return -1;
     }
 }
