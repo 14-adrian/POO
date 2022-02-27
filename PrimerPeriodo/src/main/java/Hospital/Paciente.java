@@ -82,9 +82,23 @@ public class Paciente {
             central = (bajo + alto)/2;
             valorCentral = a.get(central).getDUI();
             if(dui == valorCentral) return central;
-            //else if(dui < valorCentral) alto = central -1;
+            else if(dui < valorCentral) alto = central -1;
             else bajo = central +1;
         }
         return -1;
+    }
+    public static ArrayList<Paciente> ordPaciente(ArrayList<Paciente> pacientes) {
+        Paciente temp;
+        for (int i = 0; i < pacientes.size() - 1; i++) {
+            
+            for (int j = i+1; j < pacientes.size(); j++) {
+                if (pacientes.get(i).getNombre().compareTo(pacientes.get(j).getNombre()) > 0) {
+                    temp = pacientes.get(i);
+                    pacientes.add(i, pacientes.get(j));
+                    pacientes.add(j, temp);
+                }
+            }
+        }
+        return pacientes;
     }
 }

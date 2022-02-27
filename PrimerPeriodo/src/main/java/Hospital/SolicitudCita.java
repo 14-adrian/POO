@@ -86,9 +86,26 @@ public class SolicitudCita {
             central = (bajo + alto)/2;
             valorCentral = a.get(central).getIdSolicitud();
             if(id == valorCentral) return central;
-            //else if(dui < valorCentral) alto = central -1;
+            else if(id < valorCentral) alto = central -1;
             else bajo = central +1;
         }
         return -1;
+    }
+    public static ArrayList<SolicitudCita> ordCitas(ArrayList<SolicitudCita> idCita)
+    {
+        int indicemenor, n;
+        n = idCita.size() - 1;
+        for(int i=0; i<n-1; i++) 
+        {
+            indicemenor= 1;
+            for(int j=i+1;j<n;j++) if(idCita.get(j).getIdSolicitud()<idCita.get(indicemenor).getIdSolicitud()) indicemenor=j;
+            if(i!=indicemenor)
+            {
+            SolicitudCita temp = idCita.get(i);
+            idCita.set(i, idCita.get(indicemenor));
+            idCita.set(indicemenor, temp);
+            }
+        }
+        return idCita;
     }
 }

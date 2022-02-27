@@ -238,16 +238,35 @@ public class Hospital implements HInterface {
                             //Mostrar cita
                             case 4:
                                 if(!citas.isEmpty()){
+                                    boolean mostrarM = true;
+                                    int opMostrar = 0;
                                     String f;
-                                    System.out.println("ID::\t\tEstado:\tFecha:\tMedico:\tTipo:\tPaciente:");
-                                    for(int i = 0; i < citas.size(); i++){
-                                        System.out.print(citas.get(i).getIdSolicitud()+"\t");
-                                        System.out.print(citas.get(i).getEstado()+"\t\t");
-                                        f = fechaFormato(citas.get(i).getFecha());
-                                        System.out.print(f+"\t\t");
-                                        System.out.print(citas.get(i).getMedicoNombre()+"\t\t");
-                                        System.out.print(citas.get(i).getTipoConsulta()+"\t\t");
-                                        System.out.print(citas.get(i).getPaciente().getNombre()+"\n");
+                                    while(mostrarM){
+                                        System.out.println("ID::\t\tEstado:\tFecha:\tMedico:\tTipo:\tPaciente:");
+                                        for(int i = 0; i < citas.size(); i++){
+                                            System.out.print(citas.get(i).getIdSolicitud()+"\t");
+                                            System.out.print(citas.get(i).getEstado()+"\t\t");
+                                            f = fechaFormato(citas.get(i).getFecha());
+                                            System.out.print(f+"\t\t");
+                                            System.out.print(citas.get(i).getMedicoNombre()+"\t\t");
+                                            System.out.print(citas.get(i).getTipoConsulta()+"\t\t");
+                                            System.out.print(citas.get(i).getPaciente().getNombre()+"\n");
+                                        }
+                                        System.out.println("-----------------------\nIngrese una opcion\n1 - Ordenar\n2 - Salir");
+                                        opMostrar = entrada.nextInt();
+                                        switch(opMostrar){
+                                            case 1:
+                                                ArrayList<SolicitudCita> _cita = new ArrayList<SolicitudCita>();
+                                                _cita = SolicitudCita.ordCitas(citas);
+                                                citas = _cita;
+                                                break;
+                                            case 2:
+                                                mostrarM = false;
+                                                break;
+                                            default:
+                                                System.out.println(MSJERROR);
+                                                break;
+                                        }
                                     }
                                 }
                                 break;
@@ -339,17 +358,36 @@ public class Hospital implements HInterface {
                             //Mostrar Pacientes
                             case 4:
                                 if(!pacientes.isEmpty()){
+                                    boolean mostrarM = true;
+                                    int opMostrar = 0;
                                     String fnac;
-                                    System.out.println("Nombre:\t\tApellido:\tDUI:\tTelefono:\tCorreo:\tFecha:\tNacimiento:\tSexo:");
-                                    for(int i = 0; i < pacientes.size(); i++){
-                                        System.out.print(pacientes.get(i).getNombre()+"\t");
-                                        System.out.print(pacientes.get(i).getApellido()+"\t\t");
-                                        System.out.print(pacientes.get(i).getDUI()+"\t\t");
-                                        System.out.print(pacientes.get(i).getTelefono()+"\t\t");
-                                        System.out.print(pacientes.get(i).getCorreo()+"\t\t");
-                                        fnac = fechaFormato(pacientes.get(i).getFNacimiento());
-                                        System.out.print(fnac+"\t\t");
-                                        System.out.print(pacientes.get(i).getSexo()+"\n");
+                                    while(mostrarM){
+                                        System.out.println("Nombre:\t\tApellido:\tDUI:\tTelefono:\tCorreo:\tFecha:\tNacimiento:\tSexo:");
+                                        for(int i = 0; i < pacientes.size(); i++){
+                                            System.out.print(pacientes.get(i).getNombre()+"\t");
+                                            System.out.print(pacientes.get(i).getApellido()+"\t\t");
+                                            System.out.print(pacientes.get(i).getDUI()+"\t\t");
+                                            System.out.print(pacientes.get(i).getTelefono()+"\t\t");
+                                            System.out.print(pacientes.get(i).getCorreo()+"\t\t");
+                                            fnac = fechaFormato(pacientes.get(i).getFNacimiento());
+                                            System.out.print(fnac+"\t\t");
+                                            System.out.print(pacientes.get(i).getSexo()+"\n");
+                                        }
+                                        System.out.println("-----------------------\nIngrese una opcion\n1 - Ordenar\n2 - Salir");
+                                        opMostrar = entrada.nextInt();
+                                        switch(opMostrar){
+                                            case 1:
+                                                ArrayList<Paciente> _pac = new ArrayList<Paciente>();
+                                                _pac = Paciente.ordPaciente(pacientes);
+                                                pacientes = _pac;
+                                                break;
+                                            case 2:
+                                                mostrarM = false;
+                                                break;
+                                            default:
+                                                System.out.println(MSJERROR);
+                                                break;
+                                        }
                                     }
                                 }
                                 break;
@@ -419,11 +457,31 @@ public class Hospital implements HInterface {
                                 break;
                             //Mostrar Medicina
                             case 4:
+                                //Aqui se utilizan los metodos de ordenamiento de las clases
                                 if(!medicina.isEmpty()){
-                                    System.out.println("Descripcion:\tID:");
-                                    for(int i = 0; i < medicina.size(); i++){
-                                        System.out.print(medicina.get(i).getDescripcion()+"\t\t");
-                                        System.out.print(medicina.get(i).getIdMedicina()+"\n");
+                                    boolean mostrarM = true;
+                                    int opMostrar = 0;
+                                    while(mostrarM){
+                                        System.out.println("Descripcion:\tID:");
+                                        for(int i = 0; i < medicina.size(); i++){
+                                            System.out.print(medicina.get(i).getDescripcion()+"\t\t");
+                                            System.out.print(medicina.get(i).getIdMedicina()+"\n");
+                                        }
+                                        System.out.println("-----------------------\nIngrese una opcion\n1 - Ordenar\n2 - Salir");
+                                        opMostrar = entrada.nextInt();
+                                        switch(opMostrar){
+                                            case 1:
+                                                ArrayList<Medicina> _med = new ArrayList<Medicina>();
+                                                _med = Medicina.ordMedicina(medicina);
+                                                medicina = _med;
+                                                break;
+                                            case 2:
+                                                mostrarM = false;
+                                                break;
+                                            default:
+                                                System.out.println(MSJERROR);
+                                                break;
+                                        }
                                     }
                                 }
                                 else System.out.println("No existen datos");

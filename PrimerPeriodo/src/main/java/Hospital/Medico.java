@@ -83,9 +83,23 @@ public class Medico {
             central = (bajo + alto)/2;
             valorCentral = a.get(central).getIdMedico();
             if(id == valorCentral) return central;
-            //else if(dui < valorCentral) alto = central -1;
+            else if(id < valorCentral) alto = central -1;
             else bajo = central +1;
         }
         return -1;
+    }
+    public static ArrayList<Medico> ordMedico(ArrayList<Medico> medico) {
+        Medico temp;
+        for (int i = 0; i < medico.size() - 1; i++) {
+
+            for (int j = i+1; j < medico.size(); j++) {
+                if (medico.get(i).getNombre().compareTo(medico.get(j).getNombre()) > 0) {
+                    temp = medico.get(i);
+                    medico.add(i, medico.get(j));
+                    medico.add(j, temp);
+                }
+            }
+        }
+        return medico;
     }
 }

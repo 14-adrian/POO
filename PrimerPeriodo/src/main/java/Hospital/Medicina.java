@@ -37,15 +37,32 @@ public class Medicina {
         int central, alto, bajo;
         int valorCentral;
         bajo = 0;
-        alto = a.size()-1;
+        alto = a.size() - 1;
         while(bajo<=alto)
         {
             central = (bajo + alto)/2;
-            valorCentral = a.get(central).idMedicina;
+            valorCentral = a.get(central).getIdMedicina();
             if(id == valorCentral) return central;
-            //else if(id < valorCentral) alto = central -1;
+            else if(id < valorCentral) alto = central -1;
             else bajo = central +1;
         }
         return -1;
+    }
+    public static ArrayList<Medicina> ordMedicina(ArrayList<Medicina> idMedicina)
+    {
+        int indicemenor, n;
+        n = idMedicina.size() - 1;
+        for(int i=0; i<n-1; i++) 
+        {
+            indicemenor= 1;
+            for(int j=i+1;j<n;j++) if(idMedicina.get(j).getIdMedicina()<idMedicina.get(indicemenor).idMedicina) indicemenor=j;
+            if(i!=indicemenor)
+            {
+            Medicina temp = idMedicina.get(i);
+            idMedicina.set(i, idMedicina.get(indicemenor));
+            idMedicina.set(indicemenor, temp);
+            }
+        }
+        return idMedicina;
     }
 }
