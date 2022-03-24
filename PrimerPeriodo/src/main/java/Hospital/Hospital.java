@@ -41,6 +41,8 @@ public class Hospital implements HInterface {
         pacientes.add(_pac4);
         ArrayList<Medico> medicos = new ArrayList<Medico>();
         ArrayList<SolicitudCita> citas = new ArrayList<SolicitudCita>();
+        SolicitudCita _s = new SolicitudCita(1234, "activa", addFecha("03/09/2022"), "Juan", "Radiografia", pacientes.get(0));
+        citas.add(_s);
         //Id para agregar a los objetos
         int id = 1;
         boolean sMenu = true;
@@ -161,10 +163,10 @@ public class Hospital implements HInterface {
                     while(sOpcion){
                         System.out.println("-- Citas --\nIngrese una opicion:"
                                 + "\n1 - Nueva cita"
-                                + "\n3 - Borrar cita"
-                                + "\n4 - Buscar cita"
-                                + "\n5 - Mostrar citas"
-                                + "\n6 - Salir");
+                                + "\n2 - Borrar cita"
+                                + "\n3 - Buscar cita"
+                                + "\n4 - Mostrar citas"
+                                + "\n5 - Salir");
                         int opCitas = entrada.nextInt();
                         switch(opCitas){
                             //Nueva Cita
