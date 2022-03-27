@@ -1,7 +1,6 @@
 
 package Hospital;
 
-import java.util.ArrayList;
 import java.util.Date;
 
 /**
@@ -9,6 +8,7 @@ import java.util.Date;
  * @author Leonidas Adrian Mendoza Flores
  *         Sarahi Guadalupe Silva Molina
  */
+//Clase padre 
 public class Citas {
     private int idSolicitud; //Numero de identificacion de solicitud
     private String estado; //Estado de la solicitud
@@ -19,9 +19,10 @@ public class Citas {
         this.estado = estado;
         this.fecha = fecha;
     }
+    //Metodos get y set
     public int getIdSolicitud()
     {
-         return idSolicitud;
+        return idSolicitud;
     }
     public void setIdSolicitud(int id)
     {
@@ -43,37 +44,4 @@ public class Citas {
     {
         this.fecha = fecha;
     } 
-    public static int busquedaCita(ArrayList<SolicitudCita> a, int id)
-    {
-        int central, alto, bajo;
-        int valorCentral;
-        bajo = 0;
-        alto = a.size();
-        while(bajo<=alto)
-        {
-            central = (bajo + alto)/2;
-            valorCentral = a.get(central).getIdSolicitud();
-            if(id == valorCentral) return central;
-            else if(id < valorCentral) alto = central -1;
-            else bajo = central +1;
-        }
-        return -1;
-    }
-    public static ArrayList<SolicitudCita> ordCitas(ArrayList<SolicitudCita> idCita)
-    {
-        int indicemenor, n;
-        n = idCita.size() - 1;
-        for(int i=0; i<n-1; i++) 
-        {
-            indicemenor= 1;
-            for(int j=i+1;j<n;j++) if(idCita.get(j).getIdSolicitud()<idCita.get(indicemenor).getIdSolicitud()) indicemenor=j;
-            if(i!=indicemenor)
-            {
-            SolicitudCita temp = idCita.get(i);
-            idCita.set(i, idCita.get(indicemenor));
-            idCita.set(indicemenor, temp);
-            }
-        }
-        return idCita;
-    }
 }
