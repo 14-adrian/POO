@@ -2,7 +2,6 @@
 package Hospital;
 
 import java.util.Date;
-
 /**
  *
  * @author Leonidas Adrian Mendoza Flores
@@ -33,7 +32,6 @@ public class SolicitudDonacion extends Citas {
     {
         return dui;
     }
-  
     public void setTipoConsulta(int dui)
     {
         this.dui = dui;

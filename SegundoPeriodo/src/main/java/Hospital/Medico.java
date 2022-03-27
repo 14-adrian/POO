@@ -8,34 +8,18 @@ import java.util.Date;
  * @author Sarahi Guadalupe Silva Molina
  *         Leonidas Adrian Mendoza Flores
  */
-public class Medico {
-    private String nombre; //Nombre de el medico
+public class Medico extends Persona{
     private String especialidad; //Especialidad del medico
     private int IdMedico; //Numero de identificacion del medico
-    private String telefono; //Numero de telefono del medico
-    private String correo; //Correo del medico
-    private Date fNacimiento; //Fecha de nacimiento del medico
-    private String sexo;
     
     //Metodo para crear un atributo con la clase
     public Medico (String nombre, String especialidad, int idMedico, String telefono, String correo, Date fnacimiento, String sexo)
     {
-        this.nombre=nombre;
+        super(nombre, telefono, correo, fnacimiento, sexo);
         this.especialidad=especialidad;
         this.IdMedico=idMedico;
-        this.telefono=telefono;
-        this.correo=correo;
-        this.fNacimiento=fnacimiento;  
-        this.sexo = sexo;
     }
     //Metodos get y set
-    public String getNombre(){
-        return nombre;
-    }
-    public void setNombre(String nombre){ 
-       this.nombre=nombre;
-       
-    }
     public String getEspecialidad(){
         return especialidad; 
     }
@@ -48,30 +32,7 @@ public class Medico {
     public void setIdMedico(int id){
        this.IdMedico=id;
     }
-    public String getTelefono(){
-       return telefono;
-    }
-    public void setTelefono(String telefono){
-        this.telefono=telefono;
-    }
-    public String getCorreo(){
-        return correo;
-    }
-    public void setcorreo(String correo){
-       this.correo=correo;
-    }
-    public Date getFNacimiento(){
-       return fNacimiento;
-    }
-     public void setFNacimiento(Date fnacimiento){ 
-       this.fNacimiento=fnacimiento;
-    }
-    public String getSexo(){
-        return sexo;
-    }
-    public void setSexo(String _sexo){
-       this.sexo=_sexo;
-    }
+    //Metodos busqueda y ordenamiento
      public static int busquedaMedico(ArrayList<Medico> a, int id)
     {
         int central, alto, bajo;
