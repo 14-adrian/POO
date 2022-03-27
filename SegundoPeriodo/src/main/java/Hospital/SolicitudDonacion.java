@@ -10,7 +10,7 @@ import java.util.Date;
  */
 //Clase hijo
 public class SolicitudDonacion extends Citas {
-    private String donante; //Nombre del medico asignado
+    private String donante; //Nombre del donante
     private int dui; //Tipo de la consulta
     //Metodo constructor
     public SolicitudDonacion(int id, String estado, Date fecha, String donante, int dui)
