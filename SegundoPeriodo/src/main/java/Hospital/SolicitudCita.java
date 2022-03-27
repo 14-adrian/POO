@@ -13,7 +13,7 @@ public class SolicitudCita extends Citas {
     private String tipoConsulta; //Tipo de la consulta
     private Paciente paciente; //Paciente
     
-    public SolicitudCita(int id, String estado, Date fecha, String nMedico, String tipo, Paciente paciente) //Metodo para crear un atributo con la clase
+    public SolicitudCita(int id, String estado, Date fecha, String nMedico, String tipo, Paciente paciente) 
     {
         super(id, estado, fecha);
         this.nombreMedico = nMedico;
