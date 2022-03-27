@@ -6,6 +6,7 @@ import java.util.Date;
  * @author Sarahi Guadalupe Silva Molina
  *         Leonidas Adrian Mendoza Flores 
  */
+//Clase Padre
 public class Persona {
     private String nombre; //dato general
     private String telefono; //dato general

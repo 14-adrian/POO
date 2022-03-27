@@ -7,6 +7,7 @@ import java.util.Date;
  * @author Sarahi Guadalupe Silva Molina
  *         Leonidas Adrian Mendoza Flores
  */
+//Clase hijo
 public class Paciente extends Persona {
     private String apellido; //Apellido del paciente
     private int dui; //Numero deDUI del paciente
