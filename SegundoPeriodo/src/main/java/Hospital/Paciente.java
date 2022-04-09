@@ -1,5 +1,6 @@
 
 package Hospital;
+import static Hospital.Hospital.fechaFormato;
 import java.util.ArrayList;
 import java.util.Date;
 /**
@@ -62,5 +63,20 @@ public class Paciente extends Persona {
             }
         }
         return pacientes;
+    }
+    //metodo abstracto 
+    @Override
+    public void leer()
+    {
+        String fnac;
+        System.out.println("Nombre:\t\tApellido:\t\tDUI:\t\tTelefono:\t\tCorreo:\t\tFechaNacimiento:\t\tSexo:");
+        System.out.print(this.getNombre()+"\t");
+        System.out.print(this.getApellido()+"\t\t\t");
+        System.out.print(this.getDUI()+"\t");
+        System.out.print(this.getTelefono()+"\t\t");
+        System.out.print(this.getCorreo()+"\t\t");
+        fnac = fechaFormato(this.getFNacimiento());
+        System.out.print(fnac+"\t\t");
+        System.out.print(this.getSexo()+"\n");
     }
 }

@@ -1,6 +1,7 @@
 
 package Hospital;
 
+import static Hospital.Hospital.fechaFormato;
 import java.util.ArrayList;
 import java.util.Date;
 /**
@@ -34,7 +35,7 @@ public class Medico extends Persona{
        this.IdMedico=id;
     }
     //Metodos busqueda y ordenamiento
-     public static int busquedaMedico(ArrayList<Medico> a, int id)
+    public static int busquedaMedico(ArrayList<Medico> a, int id)
     {
         int central, alto, bajo;
         int valorCentral;
@@ -63,5 +64,19 @@ public class Medico extends Persona{
             }
         }
         return medico;
+    }
+    //metodo abstracto 
+    @Override
+    public void leer()
+    {
+        System.out.println("Nombre:\t\tEspecialidad:\t\tIDMedico:\t\tTelefono:\t\tCorreo:\t\tFecha Nacimiento:\t\tSexo:");
+        System.out.print(this.getNombre()+"\t\t");
+        System.out.print(this.getEspecialidad()+"\t\t");
+        System.out.print(this.getIdMedico()+"\t\t");
+        System.out.print(this.getTelefono()+"\t\t");
+        System.out.print(this.getCorreo()+"\t\t");
+        String fnac = fechaFormato(this.getFNacimiento());
+        System.out.print(fnac+"\t\t");
+        System.out.print(this.getSexo()+"\n");
     }
 }

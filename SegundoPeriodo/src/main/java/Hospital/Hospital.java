@@ -9,12 +9,15 @@ import java.text.ParseException;
  * @author Leonidas Adrian Mendoza Flores
  *         Sarahi Guadalupe Silva Molina
  */
-public class Hospital implements HInterface {
+public class Hospital {
     public static void main(String[] args){
         Scanner entrada = new Scanner(System.in);
+        String MSJERROR="Ingrese una opcion valida";
         //Listas
         ArrayList<Paciente> pacientes = new ArrayList<Paciente>();
         ArrayList<Medicina> medicina = new ArrayList<Medicina>();
+        ArrayList<Personal> personal = new ArrayList<Personal>();
+        Jefatura jefe;
         //Ejemplo lista medicina
         Medicina med1 = new Medicina("acetaminofen", 123);
         Medicina med2 = new Medicina("Ibuprofeno", 999);
@@ -55,7 +58,8 @@ public class Hospital implements HInterface {
                     + "\n2 - Citas"
                     + "\n3 - Pacientes"
                     + "\n4 - Medicinas"
-                    + "\n5 - Salir");
+                    + "\n5 - Personal"
+                    + "\n7 - Salir");
             int opMenu = entrada.nextInt();
             
             switch(opMenu){
@@ -88,8 +92,8 @@ public class Hospital implements HInterface {
                                 System.out.println("Ingrese el sexo:");
                                 String sexo = entrada.next();
                                 
-                                Paciente _paciente = new Paciente(nombre, especialidad, idMed, telefono, correo, fecha, sexo);
-                                pacientes.add(_paciente);
+                                Medico _medico = new Medico(nombre, especialidad, idMed, telefono, correo, fecha, sexo);
+                                medicos.add(_medico);
                                 break;
                             //Eliminar medico
                             case 2:
@@ -120,15 +124,7 @@ public class Hospital implements HInterface {
                                         if(n == -1)System.out.println("El producto no existe, por favor ingrese un numero de identificacion correcto!");
                                         else buscando = false;
                                     }
-                                    System.out.println("Nombre:\t\tEspecialidad:\tIDMedico:\tTelefono:\tCorreo:\tFecha Nacimiento:\tSexo:");
-                                    System.out.print(medicos.get(n).getNombre()+"\t");
-                                    System.out.print(medicos.get(n).getEspecialidad()+"\t\t");
-                                    System.out.print(medicos.get(n).getIdMedico()+"\t\t");
-                                    System.out.print(medicos.get(n).getTelefono()+"\t\t");
-                                    System.out.print(medicos.get(n).getCorreo()+"\t\t");
-                                    String fnac = fechaFormato(medicos.get(n).getFNacimiento());
-                                    System.out.print(fnac+"\t\t");
-                                    System.out.print(medicos.get(n).getSexo()+"\n");
+                                    medicos.get(n).leer();
                                 }
                                 break;
                             //Mostrar Medicos
@@ -343,16 +339,7 @@ public class Hospital implements HInterface {
                                         if(n == -1)System.out.println("El producto no existe, por favor ingrese un numero de identificacion correcto!");
                                         else buscando = false;
                                     }
-                                    String fnac;
-                                    System.out.println("Nombre:\t\tApellido:\tDUI:\tTelefono:\tCorreo:\tFecha:\tNacimiento:\tSexo:");
-                                    System.out.print(pacientes.get(n).getNombre()+"\t");
-                                    System.out.print(pacientes.get(n).getApellido()+"\t\t");
-                                    System.out.print(pacientes.get(n).getDUI()+"\t\t");
-                                    System.out.print(pacientes.get(n).getTelefono()+"\t\t");
-                                    System.out.print(pacientes.get(n).getCorreo()+"\t\t");
-                                    fnac = fechaFormato(pacientes.get(n).getFNacimiento());
-                                    System.out.print(fnac+"\t\t");
-                                    System.out.print(pacientes.get(n).getSexo()+"\n");
+                                    pacientes.get(n).leer();
                                     
                                 }
                                 else System.out.println("No existen datos para buscar");
@@ -497,7 +484,121 @@ public class Hospital implements HInterface {
                         }
                     }
                     break;
+                //Menu Empleados
                 case 5:
+                    while(sOpcion){
+                        System.out.println("-- Personal --\nIngrese una opicion:"
+                                + "\n1 - Agregar empleado"
+                                + "\n2 - Eliminar empleado"
+                                + "\n3 - Buscar empleado"
+                                + "\n4 - Mostrar empleados"
+                                + "\n5 - Ascender empleado"
+                                + "\n6 - Salir");
+                        int opEmp = entrada.nextInt();
+                        switch(opEmp){
+                            //Agregar Empleado
+                            case 1:
+                                System.out.println("Ingrese el Nombre:");
+                                String nombre = entrada.next();
+                                System.out.println("Ingrese el numero de identificacion:");
+                                int idEmp = entrada.nextInt();
+                                System.out.println("Ingrese el numero de telefono:");
+                                String telefono = entrada.next();
+                                System.out.println("Ingrese el correo:");
+                                String correo = entrada.next();
+                                System.out.println("Ingrese la fecha de nacimiento(dd/mm/aaaa):");
+                                String fNac = entrada.next();
+                                Date fecha = addFecha(fNac);
+                                System.out.println("Ingrese el sexo:");
+                                String sexo = entrada.next();
+                                System.out.println("Ingrese el sueldo:");
+                                float sueldo = entrada.nextFloat();
+                                System.out.println("Ingrese el numero de DUI:");
+                                int dui = entrada.nextInt();
+                                System.out.println("Ingrese el cargo:");
+                                String cargo = entrada.next();
+                                
+                                Personal _empleado = new Jefatura(nombre, idEmp, telefono, correo, fecha, sexo, sueldo, dui, cargo);
+                                personal.add(_empleado);
+                                break;
+                            //Eliminar empleado
+                            case 2:
+                                if(!personal.isEmpty()){
+                                    boolean borrando = true;
+                                    int n = -1;
+                                    while(borrando){
+                                        System.out.println("Ingrese el numero de identificacion del empleado:");
+                                        int idDel = entrada.nextInt();
+                                        n = Personal.busqueda(personal, idDel);
+                                        if(n == -1)System.out.println("El empleado no existe, ingrese un numero de identificacion correcto correcto!");
+                                        else borrando = false;
+                                    }
+                                    personal.remove(n);
+                                    System.out.println("Datos eliminados!");
+                                }
+                                else System.out.println("No existen datos para eliminar");
+                                break;
+                            //Buscar personal
+                            case 3:
+                                if(!personal.isEmpty()){
+                                    boolean buscando = true;
+                                    int n = -1;
+                                    while(buscando){
+                                        System.out.println("Ingrese el numero de identificacion del empleado que desea buscar:");
+                                        int idSrch = entrada.nextInt();
+                                        n = Personal.busqueda(personal, idSrch);
+                                        if(n == -1)System.out.println("El empleado no existe, por favor ingrese un numero de identificacion correcto!");
+                                        else buscando = false;
+                                    }
+                                    personal.get(n).leer();
+                                }
+                                break;
+                            //Mostrar personal
+                            case 4:
+                                if(!personal.isEmpty()){
+                                    String fnac;
+                                    System.out.println("Nombre:\t\tID:\t\tTelefono:\t\tCorreo:\t\tFechaNacimiento:\t\tSexo:\t\tSueldo:\t\tDUI:\t\tCargo:");
+                                    for(int i = 0; i < personal.size(); i++){
+                                        System.out.print(personal.get(i).getNombre()+"\t");
+                                        System.out.print(personal.get(i).getId()+"\t\t");
+                                        System.out.print(personal.get(i).getTelefono()+"\t\t");
+                                        System.out.print(personal.get(i).getCorreo()+"\t\t");
+                                        fnac = fechaFormato(personal.get(i).getFNacimiento());
+                                        System.out.print(fnac+"\t\t");
+                                        System.out.print(personal.get(i).getSexo()+"\n");
+                                        System.out.print(personal.get(i).getSueldo()+"\n");
+                                        System.out.print(personal.get(i).getDUI()+"\n");
+                                        System.out.print(personal.get(i).getCargo()+"\n");
+                                    }
+                                }
+                                break;
+                            //Ascender
+                            case 5:
+                                if(!personal.isEmpty()){
+                                    boolean buscando = true;
+                                    int n = -1;
+                                    while(buscando){
+                                        System.out.println("Ingrese el numero de identificacion del empleado que desea ascender:");
+                                        int idSrch = entrada.nextInt();
+                                        n = Personal.busqueda(personal, idSrch);
+                                        if(n == -1)System.out.println("El empleado no existe, por favor ingrese un numero de identificacion correcto!");
+                                        else buscando = false;
+                                    }
+                                    jefe = (Jefatura) personal.get(n);
+                                    personal.get(n).setCargo("Jefatura");
+                                }
+                                break;
+                            //Salir
+                            case 6:
+                                sOpcion = false;
+                                break;
+                            default:
+                                System.out.println(MSJERROR);
+                                break;    
+                        }
+                    }
+                    break;
+                case 7:
                     System.out.println("Adios");
                     sMenu = false;
                     break;

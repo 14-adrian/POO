@@ -1,4 +1,5 @@
 package Hospital;
+import java.util.ArrayList;
 import java.util.Date;
 
 /**
@@ -7,7 +8,7 @@ import java.util.Date;
  *         Leonidas Adrian Mendoza Flores 
  */
 //Clase Padre
-public class Persona {
+public abstract class Persona{
     private String nombre; //dato general
     private String telefono; //dato general
     private String correo; //dato general
@@ -63,7 +64,7 @@ public class Persona {
         this.fNacimiento=fNacimiento;
     }
     
-     public String getSexo()
+    public String getSexo()
     {
         return this.sexo;
     }
@@ -72,4 +73,6 @@ public class Persona {
     {
         this.sexo=sexo;
     }
+    //metodo abstracto 
+    public abstract void leer();
 }
