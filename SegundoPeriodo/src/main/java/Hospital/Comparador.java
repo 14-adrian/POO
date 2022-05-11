@@ -6,8 +6,7 @@ package Hospital;
  *         Sarahi Guadalupe Silva Molina
  */
     
-public interface HInterface {
-    
+public interface Comparador<T> {
     //Comparador
-    public int compareTo(Object comp);
+    public int comparar(T comp1);
 }

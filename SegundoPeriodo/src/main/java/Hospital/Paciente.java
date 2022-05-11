@@ -9,7 +9,7 @@ import java.util.Date;
  *         Leonidas Adrian Mendoza Flores
  */
 //Clase hijo
-public class Paciente extends Persona {
+public class Paciente extends Persona implements Comparador<Paciente>{
     private String apellido; //Apellido del paciente
     private int dui; //Numero deDUI del paciente
         
@@ -50,16 +50,22 @@ public class Paciente extends Persona {
         }
         return -1;
     }
+    //Metodo Ordenamiento aplicando irterface
     public static ArrayList<Paciente> ordPaciente(ArrayList<Paciente> pacientes) {
         Paciente temp;
-        for (int i = 0; i < pacientes.size() - 1; i++) {
-            
-            for (int j = i+1; j < pacientes.size(); j++) {
-                if (pacientes.get(i).getNombre().compareTo(pacientes.get(j).getNombre()) > 0) {
-                    temp = pacientes.get(i);
-                    pacientes.add(i, pacientes.get(j));
-                    pacientes.add(j, temp);
+        int n, indiceMenor;
+        n = pacientes.size() ;
+        for (int i = 0; i < n; i++) {
+            indiceMenor = i;
+            for (int j = i+1; j < n; j++) {
+                if (pacientes.get(j).comparar(pacientes.get(indiceMenor)) > 0) {
+                    indiceMenor = j;
                 }
+            }
+            if(i != indiceMenor && indiceMenor < n){
+                temp = pacientes.get(i);
+                pacientes.set(i, pacientes.get(indiceMenor));
+                pacientes.set(indiceMenor, temp);
             }
         }
         return pacientes;
@@ -68,15 +74,15 @@ public class Paciente extends Persona {
     @Override
     public void leer()
     {
-        String fnac;
-        System.out.println("Nombre:\t\tApellido:\t\tDUI:\t\tTelefono:\t\tCorreo:\t\tFechaNacimiento:\t\tSexo:");
-        System.out.print(this.getNombre()+"\t");
-        System.out.print(this.getApellido()+"\t\t\t");
-        System.out.print(this.getDUI()+"\t");
-        System.out.print(this.getTelefono()+"\t\t");
-        System.out.print(this.getCorreo()+"\t\t");
-        fnac = fechaFormato(this.getFNacimiento());
-        System.out.print(fnac+"\t\t");
-        System.out.print(this.getSexo()+"\n");
+        String fnac = fechaFormato(this.getFNacimiento());
+        //Formato para el printF
+        String formato = "|%12s|%12s|%12s|%12s|%12s|%18s|%12s|%n";
+        System.out.printf(formato,  "Nombre", "Apellido", "DUI", "Telefono", "Correo", "Fecha Nacimiento", "Sexo");
+        System.out.printf(formato, this.getNombre(), this.getApellido(), this.getDUI(),  this.getTelefono(),  this.getCorreo(), fnac, this.getSexo());
+    }
+    //Metodo Interface
+    @Override
+    public int comparar(Paciente pac1){
+        return pac1.getNombre().compareTo(this.getNombre());
     }
 }

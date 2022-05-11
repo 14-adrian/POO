@@ -4,10 +4,16 @@ import java.util.*;
 import java.text.DateFormat;  
 import java.text.SimpleDateFormat;  
 import java.text.ParseException;
+
+/*Proyecto programacion orientada a objetos
+Version: Beta - 0.12
+Ultima modificacion: 09/05/2022
+Modificacion: Agregado polimorfismo y casting
+*/
 /**
  *
  * @author Leonidas Adrian Mendoza Flores
- *         Sarahi Guadalupe Silva Molina
+ *                  Sarahi Guadalupe Silva Molina
  */
 public class Hospital {
     public static void main(String[] args){
@@ -34,14 +40,14 @@ public class Hospital {
         medicina.add(med6);
         medicina.add(med7);
         //Ejemplo lista paciente
-        Paciente _pac1 = new Paciente("Leonidas", "Mendoza", 123456789, "7777-7777", "ssss@fff.com", addFecha("14/02/2001"), "m");
+        Paciente _pac1 = new Paciente("Brandon", "Mendoza", 123456789, "7777-7777", "ssss@fff.com", addFecha("14/02/2001"), "m");
         Paciente _pac2 = new Paciente("Alberto", "Lopez", 111114444, "7755-4444", "lambda@fff.com", addFecha("25/06/2000"), "m");
-        Paciente _pac3 = new Paciente("Sara", "Lopez", 444433322, "5555-5555", "sara9@fff.com", addFecha("12/01/1999"), "f");
-        Paciente _pac4 = new Paciente("Arturo", "Flores", 999999999, "7333-7777", "A911@fff.com", addFecha("03/09/2003"), "m");
+        Paciente _pac3 = new Paciente("Carla", "Alvarado", 444433322, "5555-5555", "sara9@fff.com", addFecha("12/01/1999"), "f");
+        Personal empl = new Jefatura("Arturo", 12345, "7333-7777", "A911@fff.com", addFecha("03/09/2003"), "m", 122,12345, "Jefe");
         pacientes.add(_pac1);
         pacientes.add(_pac2);
         pacientes.add(_pac3);
-        pacientes.add(_pac4);
+        personal.add(empl);
         ArrayList<Medico> medicos = new ArrayList<Medico>();
         ArrayList<SolicitudCita> citas = new ArrayList<SolicitudCita>();
         SolicitudCita _s = new SolicitudCita(1234, "activa", addFecha("03/09/2022"), "Juan", "Radiografia", pacientes.get(0));
@@ -130,17 +136,17 @@ public class Hospital {
                             //Mostrar Medicos
                             case 4:
                                 if(!medicos.isEmpty()){
+                                    String formato = "|%12s|%12s|%12s|%12s|%12s|%18s|%12s|%n";
                                     String fnac;
-                                    System.out.println("Nombre:\t\tEspecialidad:\tIDMedico:\tTelefono:\tCorreo:\tFecha Nacimiento:\tSexo:");
+                                    System.out.printf(formato,  "Nombre", "Especialidad", "IDMedico", "Telefono", "Correo", "Fecha Nacimiento", "Sexo");
                                     for(int i = 0; i < medicos.size(); i++){
-                                        System.out.print(medicos.get(i).getNombre()+"\t");
-                                        System.out.print(medicos.get(i).getEspecialidad()+"\t\t");
-                                        System.out.print(medicos.get(i).getIdMedico()+"\t\t");
-                                        System.out.print(medicos.get(i).getTelefono()+"\t\t");
-                                        System.out.print(medicos.get(i).getCorreo()+"\t\t");
                                         fnac = fechaFormato(medicos.get(i).getFNacimiento());
-                                        System.out.print(fnac+"\t\t");
-                                        System.out.print(medicos.get(i).getSexo()+"\n");
+                                        System.out.printf(formato, medicos.get(i).getNombre()
+                                                , medicos.get(i).getEspecialidad()
+                                                , medicos.get(i).getIdMedico()
+                                                ,  medicos.get(i).getTelefono()
+                                                ,  medicos.get(i).getCorreo()
+                                                , fnac, medicos.get(i).getSexo());
                                     }
                                 }
                                 break;
@@ -347,20 +353,22 @@ public class Hospital {
                             //Mostrar Pacientes
                             case 4:
                                 if(!pacientes.isEmpty()){
+                                    String formato = "|%12s|%12s|%12s|%12s|%12s|%18s|%12s|%n";
                                     boolean mostrarM = true;
                                     int opMostrar = 0;
                                     String fnac;
                                     while(mostrarM){
-                                        System.out.println("Nombre:\t\tApellido:\tDUI:\tTelefono:\tCorreo:\tFecha:\tNacimiento:\tSexo:");
+                                        System.out.printf(formato, "Nombre", "Apellido", "DUI", "Telefono", "Correo", "Fecha Nacimiento", "Sexo");
+                                        
                                         for(int i = 0; i < pacientes.size(); i++){
-                                            System.out.print(pacientes.get(i).getNombre()+"\t");
-                                            System.out.print(pacientes.get(i).getApellido()+"\t\t");
-                                            System.out.print(pacientes.get(i).getDUI()+"\t\t");
-                                            System.out.print(pacientes.get(i).getTelefono()+"\t\t");
-                                            System.out.print(pacientes.get(i).getCorreo()+"\t\t");
                                             fnac = fechaFormato(pacientes.get(i).getFNacimiento());
-                                            System.out.print(fnac+"\t\t");
-                                            System.out.print(pacientes.get(i).getSexo()+"\n");
+                                            System.out.printf(formato, pacientes.get(i).getNombre()
+                                                    , pacientes.get(i).getApellido()
+                                                    , pacientes.get(i).getDUI()
+                                                    , pacientes.get(i).getTelefono()
+                                                    , pacientes.get(i).getCorreo()
+                                                    , fnac, pacientes.get(i).getSexo());
+                                            
                                         }
                                         System.out.println("-----------------------\nIngrese una opcion\n1 - Ordenar\n2 - Salir");
                                         opMostrar = entrada.nextInt();
@@ -557,18 +565,18 @@ public class Hospital {
                             case 4:
                                 if(!personal.isEmpty()){
                                     String fnac;
-                                    System.out.println("Nombre:\t\tID:\t\tTelefono:\t\tCorreo:\t\tFechaNacimiento:\t\tSexo:\t\tSueldo:\t\tDUI:\t\tCargo:");
+                                    String formato = "|%12s|%12s|%12s|%12s|%18s|%12s|%12s|%12s|%12s|%n";
+                                    System.out.printf(formato,  "Nombre", "ID", "Telefono", "Correo", "Fecha Nacimiento", "Sexo", "Sueldo", "DUI", "Cargo");
                                     for(int i = 0; i < personal.size(); i++){
-                                        System.out.print(personal.get(i).getNombre()+"\t");
-                                        System.out.print(personal.get(i).getId()+"\t\t");
-                                        System.out.print(personal.get(i).getTelefono()+"\t\t");
-                                        System.out.print(personal.get(i).getCorreo()+"\t\t");
                                         fnac = fechaFormato(personal.get(i).getFNacimiento());
-                                        System.out.print(fnac+"\t\t");
-                                        System.out.print(personal.get(i).getSexo()+"\n");
-                                        System.out.print(personal.get(i).getSueldo()+"\n");
-                                        System.out.print(personal.get(i).getDUI()+"\n");
-                                        System.out.print(personal.get(i).getCargo()+"\n");
+                                        System.out.printf(formato, personal.get(i).getNombre()
+                                                , personal.get(i).getId()
+                                                ,  personal.get(i).getTelefono()
+                                                ,  personal.get(i).getCorreo()
+                                                , fnac, personal.get(i).getSexo()
+                                                , personal.get(i).getSueldo()
+                                                , personal.get(i).getDUI()
+                                                , personal.get(i).getCargo());
                                     }
                                 }
                                 break;

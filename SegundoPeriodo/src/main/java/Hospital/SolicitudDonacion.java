@@ -58,10 +58,10 @@ public class SolicitudDonacion extends Citas {
     public static ArrayList<SolicitudDonacion> ordCitas(ArrayList<SolicitudDonacion> idCita)
     {
         int indicemenor, n;
-        n = idCita.size() - 1;
+        n = idCita.size() ;
         for(int i=0; i<n-1; i++) 
         {
-            indicemenor= 1;
+            indicemenor= i;
             for(int j=i+1;j<n;j++) if(idCita.get(j).getIdSolicitud()<idCita.get(indicemenor).getIdSolicitud()) indicemenor=j;
             if(i!=indicemenor)
             {

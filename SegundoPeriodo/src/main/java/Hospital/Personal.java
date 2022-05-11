@@ -9,7 +9,7 @@ import java.util.Date;
  * @author Leonidas Adrian Mendoza Flores
  *         Sarahi Guadalupe Silva Molina
  */
-public class Personal extends Persona{
+public class Personal extends Persona implements Comparador<Personal>{
     private String cargo; //Cargo que desempeña
     private int id; //Id del empleado
     private int dui; //DUI de el empleado
@@ -65,14 +65,19 @@ public class Personal extends Persona{
     }
     public static ArrayList<Personal> ordEmpleados(ArrayList<Personal> personal) {
         Personal temp;
-        for (int i = 0; i < personal.size() - 1; i++) {
-
-            for (int j = i+1; j < personal.size(); j++) {
-                if (personal.get(i).getNombre().compareTo(personal.get(j).getNombre()) > 0) {
-                    temp = personal.get(i);
-                    personal.add(i, personal.get(j));
-                    personal.add(j, temp);
+        int n, indiceMenor;
+        n = personal.size();
+        for (int i = 0; i < n; i++) {
+            indiceMenor = i;
+            for (int j = i + 1; j < n; j++) {
+                if (personal.get(j).comparar(personal.get(indiceMenor)) > 0) {
+                    indiceMenor = j;
                 }
+            }
+            if (i != indiceMenor && indiceMenor < n) {
+                temp = personal.get(i);
+                personal.set(i, personal.get(indiceMenor));
+                personal.set(indiceMenor, temp);
             }
         }
         return personal;
@@ -81,16 +86,14 @@ public class Personal extends Persona{
     @Override
     public void leer()
     {
-        System.out.println("Nombre:\t\tID:\t\tTelefono:\t\tCorreo:\t\tFecha Nacimiento:\t\tSexo:\t\tSueldo:\t\tDUI:\t\tCargo:");
-        System.out.print(this.getNombre()+"\t");
-        System.out.print(this.getId()+"\t\t");
-        System.out.print(this.getTelefono()+"\t\t");
-        System.out.print(this.getCorreo()+"\t\t");
         String fnac = fechaFormato(this.getFNacimiento());
-        System.out.print(fnac+"\t\t");
-        System.out.print(this.getSexo()+"\n");
-        System.out.print(this.getSueldo()+"\n");
-        System.out.print(this.getDUI()+"\n");
-        System.out.print(this.getCargo()+"\n");
+        //Formato para el printF
+        String formato = "|%12s|%12s|%12s|%12s|%18s|%12s|%12s|%12s|%12s|%n";
+        System.out.printf(formato,  "Nombre", "ID", "Telefono", "Correo", "Fecha Nacimiento", "Sexo", "Sueldo", "DUI", "Cargo");
+        System.out.printf(formato, this.getNombre(), this.getId(),  this.getTelefono(),  this.getCorreo(), fnac, this.getSexo(), this.getSueldo(), this.getDUI(), this.getCargo());
+    }
+    @Override
+    public int comparar(Personal pers){
+        return pers.getNombre().compareTo(this.getNombre());
     }
 }
