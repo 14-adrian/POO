@@ -6,9 +6,9 @@ import java.text.SimpleDateFormat;
 import java.text.ParseException;
 
 /*Proyecto programacion orientada a objetos
-Version: Beta - 0.12
-Ultima modificacion: 09/05/2022
-Modificacion: Agregado polimorfismo y casting
+Version: Beta - 0.2
+Ultima modificacion: 10/05/2022
+Modificacion: Agregado Uso de interface en metodos de ordenamiento
 */
 /**
  *
