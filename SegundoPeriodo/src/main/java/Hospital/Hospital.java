@@ -18,7 +18,9 @@ Modificacion: Agregado Uso de interface en metodos de ordenamiento
 public class Hospital {
     public static void main(String[] args){
         Scanner entrada = new Scanner(System.in);
+        Ingresar ingresar = new Ingresar();
         String MSJERROR="Ingrese una opcion valida";
+        int opMenu;
         //Listas
         ArrayList<Paciente> pacientes = new ArrayList<Paciente>();
         ArrayList<Medicina> medicina = new ArrayList<Medicina>();
@@ -59,44 +61,37 @@ public class Hospital {
         //Menu
         while(sMenu){
             boolean sOpcion = true;
-            System.out.println("-- Hospital El Salvador --\nIngrese una opicion:"
+            String menu = ("-- Hospital El Salvador --"
                     + "\n1 - Medicos"
                     + "\n2 - Citas"
                     + "\n3 - Pacientes"
                     + "\n4 - Medicinas"
                     + "\n5 - Personal"
-                    + "\n7 - Salir");
-            int opMenu = entrada.nextInt();
+                    + "\n6 - Salir\n");
+            
+            opMenu = ingresar.opcion(menu);
             
             switch(opMenu){
                 //Menu medicos
                 case 1:
                     while(sOpcion){
-                        System.out.println("-- Medicos --\nIngrese una opicion:"
+                        String menuM = ("-- Medicos --"
                                 + "\n1 - Agregar medico"
                                 + "\n2 - Eliminar medico"
                                 + "\n3 - Buscar medico"
                                 + "\n4 - Mostrar medicos"
                                 + "\n5 - Salir");
-                        int opMedicos = entrada.nextInt();
+                        int opMedicos = ingresar.opcion(menuM);
                         switch(opMedicos){
                             //Agregar medico
                             case 1:
-                                System.out.println("Ingrese el Nombre:");
-                                String nombre = entrada.next();
-                                System.out.println("Ingrese la especialidad:");
-                                String especialidad = entrada.next();
-                                System.out.println("Ingrese el numero de identificacion:");
-                                int idMed = entrada.nextInt();
-                                System.out.println("Ingrese el numero de telefono:");
-                                String telefono = entrada.next();
-                                System.out.println("Ingrese el correo:");
-                                String correo = entrada.next();
-                                System.out.println("Ingrese la fecha de nacimiento(dd/mm/aaaa):");
-                                String fNac = entrada.next();
-                                Date fecha = addFecha(fNac);
-                                System.out.println("Ingrese el sexo:");
-                                String sexo = entrada.next();
+                                String nombre = ingresar.addNombre("Ingrese el nombre: ");
+                                String especialidad = ingresar.addNombre("Ingrese la especialidad");
+                                int idMed = ingresar.addID("Ingrese el numero de identificacion:");
+                                String telefono = ingresar.addTelefono("Ingrese el numero de telefono(####-####):");
+                                String correo = ingresar.addCorreo("Ingrese el correo:");
+                                Date fecha = ingresar.addFecha("Ingrese la fecha de nacimiento(dd/mm/aaaa):");
+                                String sexo = ingresar.addNombre("Ingrese el sexo: ");
                                 
                                 Medico _medico = new Medico(nombre, especialidad, idMed, telefono, correo, fecha, sexo);
                                 medicos.add(_medico);
@@ -107,8 +102,7 @@ public class Hospital {
                                     boolean borrando = true;
                                     int n = -1;
                                     while(borrando){
-                                        System.out.println("Ingrese el numero de identificacion del medico que desea eliminar:");
-                                        int idDel = entrada.nextInt();
+                                        int idDel = ingresar.addID("Ingrese el numero de identificacion del medico que desea eliminar:");
                                         n = Medico.busquedaMedico(medicos, idDel);
                                         if(n == -1)System.out.println("El medico no existe, ingrese un numero de identificacion correcto correcto!");
                                         else borrando = false;
@@ -124,8 +118,7 @@ public class Hospital {
                                 boolean buscando = true;
                                 int n = -1;
                                     while(buscando){
-                                        System.out.println("Ingrese el numero de DUI del paciente que desea buscar:");
-                                        int idSrch = entrada.nextInt();
+                                        int idSrch = ingresar.addID("Ingrese el numero de DUI del paciente que desea buscar:");
                                         n = Medico.busquedaMedico(medicos, idSrch);
                                         if(n == -1)System.out.println("El producto no existe, por favor ingrese un numero de identificacion correcto!");
                                         else buscando = false;
@@ -136,7 +129,7 @@ public class Hospital {
                             //Mostrar Medicos
                             case 4:
                                 if(!medicos.isEmpty()){
-                                    String formato = "|%12s|%12s|%12s|%12s|%12s|%18s|%12s|%n";
+                                    String formato = "|%12s|%12s|%12s|%12s|%24s|%18s|%12s|%n";
                                     String fnac;
                                     System.out.printf(formato,  "Nombre", "Especialidad", "IDMedico", "Telefono", "Correo", "Fecha Nacimiento", "Sexo");
                                     for(int i = 0; i < medicos.size(); i++){
@@ -163,30 +156,26 @@ public class Hospital {
                 //Menu citas
                 case 2:
                     while(sOpcion){
-                        System.out.println("-- Citas --\nIngrese una opicion:"
+                        String menuC = ("-- Citas --"
                                 + "\n1 - Nueva cita"
                                 + "\n2 - Borrar cita"
                                 + "\n3 - Buscar cita"
                                 + "\n4 - Mostrar citas"
                                 + "\n5 - Salir");
-                        int opCitas = entrada.nextInt();
+                        int opCitas = ingresar.opcion(menuC);
                         switch(opCitas){
                             //Nueva Cita
                             case 1:
                                 if(!pacientes.isEmpty()){
                                     id++;
-                                    System.out.println("Ingrese el estado:");
-                                    String estado = entrada.nextLine();
-                                    Date fecha = new Date();
-                                    System.out.println("Ingrese el nombre del medico asignado:");
-                                    String medico = entrada.nextLine();
-                                    System.out.println("Ingrese el tipo de consulta:");
-                                    String tipo = entrada.nextLine();
+                                    String estado = ingresar.addNombre("Ingrese el estado: ");
+                                    Date fecha = ingresar.addFecha("ingrese la fecha de la cita");
+                                    String medico = ingresar.addNombre("Ingrese el nombre del medico asignado:");
+                                    String tipo = ingresar.addNombre("Ingrese el tipo de consulta: ");
                                     boolean cons = true;
                                     int n = -1;
                                     while(cons){
-                                        System.out.println("Ingrese el numero de DUI del paciente:");
-                                        int duiPac = entrada.nextInt();
+                                        int duiPac = ingresar.addDUI("Ingrese el numero de DUI del paciente:");
                                         n = Paciente.busquedaPaciente(pacientes, duiPac);
                                         if(n == -1)System.out.println("El paciente no existe, por favor ingrese un numero de DUI correcto!");
                                         else cons = false;
@@ -202,8 +191,7 @@ public class Hospital {
                                 boolean borrando = true;
                                 int n = -1;
                                 while(borrando){
-                                    System.out.println("Ingrese el numero de identificacion de la cita que desea eliminar:");
-                                    int idDel = entrada.nextInt();
+                                    int idDel = ingresar.addID("Ingrese el numero de identificacion de la cita que desea eliminar:");
                                     n = SolicitudCita.busquedaCita(citas, idDel);
                                     if(n == -1)System.out.println("El id de la cita no existe, por favor ingrese un id correcto!");
                                     else borrando = false;
@@ -219,8 +207,7 @@ public class Hospital {
                                 boolean buscando = true;
                                 int n = -1;
                                     while(buscando){
-                                        System.out.println("Ingrese el numero de identificacion de la cita que desea buscar:");
-                                        int idSrch = entrada.nextInt();
+                                        int idSrch = ingresar.addID("Ingrese el numero de identificacion de la cita que desea buscar:");
                                         n = SolicitudCita.busquedaCita(citas, idSrch);
                                         if(n == -1)System.out.println("El producto no existe, por favor ingrese un numero de identificacion correcto!");
                                         else buscando = false;
@@ -256,8 +243,8 @@ public class Hospital {
                                             System.out.print(citas.get(i).getTipoConsulta()+"\t\t");
                                             System.out.print(citas.get(i).getPaciente().getNombre()+"\n");
                                         }
-                                        System.out.println("-----------------------\nIngrese una opcion\n1 - Ordenar\n2 - Salir");
-                                        opMostrar = entrada.nextInt();
+                                        String menuMostrar = ("-----------------------\n1 - Ordenar\n2 - Salir");
+                                        opMostrar = ingresar.opcion(menuMostrar);
                                         switch(opMostrar){
                                             case 1:
                                                 ArrayList<SolicitudCita> _cita = new ArrayList<SolicitudCita>();
@@ -287,31 +274,23 @@ public class Hospital {
                 //Menu Pacientes
                 case 3:
                     while(sOpcion){
-                        System.out.println("-- Pacientes --\nIngrese una opicion:"
+                        String menuP = ("-- Pacientes --"
                                 + "\n1 - Agregar paciente"
                                 + "\n2 - Borrar paciente"
                                 + "\n3 - Buscar paciente"
                                 + "\n4 - Mostrar pacientes"
                                 + "\n5 - Salir");
-                        int opPacientes = entrada.nextInt();
+                        int opPacientes = ingresar.opcion(menuP);
                         switch(opPacientes){
                             //Agregar Pacientes
                             case 1:
-                                System.out.println("Ingrese el Nombre:");
-                                String nombre = entrada.next();
-                                System.out.println("Ingrese el Apellido:");
-                                String apellido = entrada.next();
-                                System.out.println("Ingrese el numero de DUI:");
-                                int dui = entrada.nextInt();
-                                System.out.println("Ingrese el numero de telefono:");
-                                String telefono = entrada.next();
-                                System.out.println("Ingrese el correo:");
-                                String correo = entrada.next();
-                                System.out.println("Ingrese la fecha de nacimiento(dd/mm/aaaa):");
-                                String fNac = entrada.next();
-                                Date fecha = addFecha(fNac);
-                                System.out.println("Ingrese el sexo:");
-                                String sexo = entrada.next();
+                                String nombre = ingresar.addNombre("Ingrese el nombre: ");
+                                String apellido = ingresar.addNombre("Ingrese el apellido");
+                                int dui = ingresar.addDUI("Ingrese el numero de DUI: ");
+                                String telefono = ingresar.addTelefono("Ingrese el numero de telefono;");
+                                String correo = ingresar.addCorreo("Ingrese el correo:");
+                                Date fecha = ingresar.addFecha("Ingrese la fecha de nacimiento(dd/mm/aaaa):");
+                                String sexo = ingresar.addNombre("Ingrese el sexo; ");
                                 
                                 Paciente _paciente = new Paciente(nombre, apellido, dui, telefono, correo, fecha, sexo);
                                 pacientes.add(_paciente);
@@ -322,8 +301,7 @@ public class Hospital {
                                     boolean borrando = true;
                                     int n = -1;
                                     while(borrando){
-                                        System.out.println("Ingrese el numero de DUI del paciente que desea eliminar:");
-                                        int duiDel = entrada.nextInt();
+                                        int duiDel = ingresar.addDUI("Ingrese el numero de DUI del paciente que desea eliminar:");
                                         n = Paciente.busquedaPaciente(pacientes, duiDel);
                                         if(n == -1)System.out.println("El paciente no existe, por favor ingrese un numero de DUI correcto!");
                                         else borrando = false;
@@ -339,8 +317,7 @@ public class Hospital {
                                 boolean buscando = true;
                                 int n = -1;
                                     while(buscando){
-                                        System.out.println("Ingrese el numero de DUI del paciente que desea buscar:");
-                                        int duiSrch = entrada.nextInt();
+                                        int duiSrch = ingresar.addDUI("Ingrese el numero de DUI del paciente que desea buscar:");
                                         n = Paciente.busquedaPaciente(pacientes, duiSrch);
                                         if(n == -1)System.out.println("El producto no existe, por favor ingrese un numero de identificacion correcto!");
                                         else buscando = false;
@@ -370,8 +347,8 @@ public class Hospital {
                                                     , fnac, pacientes.get(i).getSexo());
                                             
                                         }
-                                        System.out.println("-----------------------\nIngrese una opcion\n1 - Ordenar\n2 - Salir");
-                                        opMostrar = entrada.nextInt();
+                                        String menuMostrar = ("-----------------------\n1 - Ordenar\n2 - Salir");
+                                        opMostrar = ingresar.opcion(menuMostrar);
                                         switch(opMostrar){
                                             case 1:
                                                 ArrayList<Paciente> _pac = new ArrayList<Paciente>();
@@ -400,20 +377,18 @@ public class Hospital {
                 //Menu medicinas
                 case 4:
                     while(sOpcion){
-                        System.out.println("-- Medicina --\nIngrese una opicion:"
+                        String menuMM = ("-- Medicina --"
                                 + "\n1 - Agregar medicina"
                                 + "\n2 - Borrar medicina"
                                 + "\n3 - Buscar medicina"
                                 + "\n4 - Mostrar medicinas"
                                 + "\n5 - Salir");
-                        int opMedicina = entrada.nextInt();
+                        int opMedicina = ingresar.opcion(menuMM);
                         switch(opMedicina){
                             //Agregar Medicina
                             case 1:
-                                System.out.println("Ingrese la descripcion:");
-                                String descripcion = entrada.next();
-                                System.out.println("Ingrese el numero de identificacion:");
-                                int idMed = entrada.nextInt();
+                                String descripcion = ingresar.addNombre("Ingrese la descripcion: ");
+                                int idMed = ingresar.addID("Ingrese el numero de identificacion: ");
                                 Medicina medic = new Medicina(descripcion, idMed);
                                 medicina.add(medic);
                                 break;
@@ -423,8 +398,7 @@ public class Hospital {
                                     boolean borrando = true;
                                     int n = -1;
                                     while(borrando){
-                                        System.out.println("Ingrese el numero de identificacion que desea eliminar:");
-                                        int idDel = entrada.nextInt();
+                                        int idDel = ingresar.addID("Ingrese el numero de identificacion del producto que desea eliminar:");
                                         n = Medicina.busquedaMedicina(medicina, idDel);
                                         if(n == -1)System.out.println("El producto no existe, por favor ingrese un numero de identificacion correcto!");
                                         else borrando = false;
@@ -440,8 +414,7 @@ public class Hospital {
                                 boolean buscando = true;
                                 int n = -1;
                                     while(buscando){
-                                        System.out.println("Ingrese el numero de identificacion que desea buscar:");
-                                        int idSrch = entrada.nextInt();
+                                        int idSrch = ingresar.addID("Ingrese el numero de identificacion del producto que desea buscar:");
                                         n = Medicina.busquedaMedicina(medicina, idSrch);
                                         if(n == -1)System.out.println("El producto no existe, por favor ingrese un numero de identificacion correcto!");
                                         else buscando = false;
@@ -464,8 +437,8 @@ public class Hospital {
                                             System.out.print(medicina.get(i).getDescripcion()+"\t\t");
                                             System.out.print(medicina.get(i).getIdMedicina()+"\n");
                                         }
-                                        System.out.println("-----------------------\nIngrese una opcion\n1 - Ordenar\n2 - Salir");
-                                        opMostrar = entrada.nextInt();
+                                        String menuMostrar = ("-----------------------\n1 - Ordenar\n2 - Salir");
+                                        opMostrar = ingresar.opcion(menuMostrar);
                                         switch(opMostrar){
                                             case 1:
                                                 ArrayList<Medicina> _med = new ArrayList<Medicina>();
@@ -495,36 +468,26 @@ public class Hospital {
                 //Menu Empleados
                 case 5:
                     while(sOpcion){
-                        System.out.println("-- Personal --\nIngrese una opicion:"
+                        String menuPer = ("-- Personal --"
                                 + "\n1 - Agregar empleado"
                                 + "\n2 - Eliminar empleado"
                                 + "\n3 - Buscar empleado"
                                 + "\n4 - Mostrar empleados"
                                 + "\n5 - Ascender empleado"
                                 + "\n6 - Salir");
-                        int opEmp = entrada.nextInt();
+                        int opEmp = ingresar.opcion(menuPer);
                         switch(opEmp){
                             //Agregar Empleado
                             case 1:
-                                System.out.println("Ingrese el Nombre:");
-                                String nombre = entrada.next();
-                                System.out.println("Ingrese el numero de identificacion:");
-                                int idEmp = entrada.nextInt();
-                                System.out.println("Ingrese el numero de telefono:");
-                                String telefono = entrada.next();
-                                System.out.println("Ingrese el correo:");
-                                String correo = entrada.next();
-                                System.out.println("Ingrese la fecha de nacimiento(dd/mm/aaaa):");
-                                String fNac = entrada.next();
-                                Date fecha = addFecha(fNac);
-                                System.out.println("Ingrese el sexo:");
-                                String sexo = entrada.next();
-                                System.out.println("Ingrese el sueldo:");
-                                float sueldo = entrada.nextFloat();
-                                System.out.println("Ingrese el numero de DUI:");
-                                int dui = entrada.nextInt();
-                                System.out.println("Ingrese el cargo:");
-                                String cargo = entrada.next();
+                                String nombre = ingresar.addNombre("Ingrese el nombre: "); //Nombre
+                                int idEmp = ingresar.addID("Ingrese el numero de identificacion"); //ID
+                                String telefono = ingresar.addTelefono("Ingrese el numero de telefono: "); //Telefono
+                                String correo = ingresar.addCorreo("Ingrese el correo :"); //Correo
+                                Date fecha = ingresar.addFecha("Ingrese la fecha de nacimiento(dd/mm/aaaa):"); //Fecha nacimiento
+                                String sexo = ingresar.addNombre("Ingrese el sexo: "); //Sexo
+                                float sueldo = ingresar.addDecimal("Ingrese el sueldo: "); //Sueldo
+                                int dui = ingresar.addDUI("Ingrese el numero de DUI: "); //DUI
+                                String cargo = ingresar.addNombre("Ingrese el cargo: "); //Cargo
                                 
                                 Personal _empleado = new Jefatura(nombre, idEmp, telefono, correo, fecha, sexo, sueldo, dui, cargo);
                                 personal.add(_empleado);
@@ -535,8 +498,7 @@ public class Hospital {
                                     boolean borrando = true;
                                     int n = -1;
                                     while(borrando){
-                                        System.out.println("Ingrese el numero de identificacion del empleado:");
-                                        int idDel = entrada.nextInt();
+                                        int idDel = ingresar.addID("Ingrese el numero de identificacion del empleado:");
                                         n = Personal.busqueda(personal, idDel);
                                         if(n == -1)System.out.println("El empleado no existe, ingrese un numero de identificacion correcto correcto!");
                                         else borrando = false;
@@ -552,8 +514,7 @@ public class Hospital {
                                     boolean buscando = true;
                                     int n = -1;
                                     while(buscando){
-                                        System.out.println("Ingrese el numero de identificacion del empleado que desea buscar:");
-                                        int idSrch = entrada.nextInt();
+                                        int idSrch = ingresar.addID("Ingrese el numero de identificacion del empleado que desea buscar:");
                                         n = Personal.busqueda(personal, idSrch);
                                         if(n == -1)System.out.println("El empleado no existe, por favor ingrese un numero de identificacion correcto!");
                                         else buscando = false;
@@ -565,7 +526,7 @@ public class Hospital {
                             case 4:
                                 if(!personal.isEmpty()){
                                     String fnac;
-                                    String formato = "|%12s|%12s|%12s|%12s|%18s|%12s|%12s|%12s|%12s|%n";
+                                    String formato = "|%12s|%12s|%12s|%24s|%18s|%12s|%12s|%12s|%12s|%n";
                                     System.out.printf(formato,  "Nombre", "ID", "Telefono", "Correo", "Fecha Nacimiento", "Sexo", "Sueldo", "DUI", "Cargo");
                                     for(int i = 0; i < personal.size(); i++){
                                         fnac = fechaFormato(personal.get(i).getFNacimiento());
@@ -586,8 +547,7 @@ public class Hospital {
                                     boolean buscando = true;
                                     int n = -1;
                                     while(buscando){
-                                        System.out.println("Ingrese el numero de identificacion del empleado que desea ascender:");
-                                        int idSrch = entrada.nextInt();
+                                        int idSrch = ingresar.addID("Ingrese el numero de identificacion del empleado que desea ascender:");
                                         n = Personal.busqueda(personal, idSrch);
                                         if(n == -1)System.out.println("El empleado no existe, por favor ingrese un numero de identificacion correcto!");
                                         else buscando = false;
@@ -606,7 +566,7 @@ public class Hospital {
                         }
                     }
                     break;
-                case 7:
+                case 6:
                     System.out.println("Adios");
                     sMenu = false;
                     break;
@@ -625,7 +585,7 @@ public class Hospital {
         
         return formato.format(ahora);
     }
- 
+ // Metodo temporal para ejemplificacion
     public static Date addFecha(String f){
         SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
         Date fechaDate = null;
