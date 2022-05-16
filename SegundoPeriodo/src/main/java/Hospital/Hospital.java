@@ -17,7 +17,6 @@ Modificacion: Agregado Uso de interface en metodos de ordenamiento
  */
 public class Hospital {
     public static void main(String[] args){
-        Scanner entrada = new Scanner(System.in);
         Ingresar ingresar = new Ingresar();
         String MSJERROR="Ingrese una opcion valida";
         int opMenu;
