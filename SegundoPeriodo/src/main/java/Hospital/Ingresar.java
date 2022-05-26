@@ -31,7 +31,7 @@ public class Ingresar {
                 }
                op = sc.nextInt();
             } while (op <= 0);
-        } catch (Exception e) {
+       } catch (Exception e) {
             System.out.println("Por favor, ingrese un dato valido");
         }
         return op;
