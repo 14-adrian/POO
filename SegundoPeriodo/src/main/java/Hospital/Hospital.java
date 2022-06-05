@@ -6,9 +6,9 @@ import java.text.SimpleDateFormat;
 import java.text.ParseException;
 
 /*Proyecto programacion orientada a objetos
-Version: Beta - 0.2
-Ultima modificacion: 10/05/2022
-Modificacion: Agregado Uso de interface en metodos de ordenamiento
+Version: 1.0
+Ultima modificacion: 04/06/2022
+Modificacion: Finalizado
 */
 /**
  *
@@ -25,34 +25,9 @@ public class Hospital {
         ArrayList<Medicina> medicina = new ArrayList<Medicina>();
         ArrayList<Personal> personal = new ArrayList<Personal>();
         Jefatura jefe;
-        //Ejemplo lista medicina
-        Medicina med1 = new Medicina("acetaminofen", 123);
-        Medicina med2 = new Medicina("Ibuprofeno", 999);
-        Medicina med3 = new Medicina("Carvidopa", 892);
-        Medicina med4 = new Medicina("Bicarbonato", 210);
-        Medicina med5 = new Medicina("SodioCaps", 320);
-        Medicina med6 = new Medicina("Salva", 344);
-        Medicina med7 = new Medicina("Tramaset", 122);
-        medicina.add(med1);
-        medicina.add(med2);
-        medicina.add(med3);
-        medicina.add(med4);
-        medicina.add(med5);
-        medicina.add(med6);
-        medicina.add(med7);
-        //Ejemplo lista paciente
-        Paciente _pac1 = new Paciente("Brandon", "Mendoza", 123456789, "7777-7777", "ssss@fff.com", addFecha("14/02/2001"), "m");
-        Paciente _pac2 = new Paciente("Alberto", "Lopez", 111114444, "7755-4444", "lambda@fff.com", addFecha("25/06/2000"), "m");
-        Paciente _pac3 = new Paciente("Carla", "Alvarado", 444433322, "5555-5555", "sara9@fff.com", addFecha("12/01/1999"), "f");
-        Personal empl = new Jefatura("Arturo", 12345, "7333-7777", "A911@fff.com", addFecha("03/09/2003"), "m", 122,12345, "Jefe");
-        pacientes.add(_pac1);
-        pacientes.add(_pac2);
-        pacientes.add(_pac3);
-        personal.add(empl);
         ArrayList<Medico> medicos = new ArrayList<Medico>();
         ArrayList<SolicitudCita> citas = new ArrayList<SolicitudCita>();
-        SolicitudCita _s = new SolicitudCita(1234, "activa", addFecha("03/09/2022"), "Juan", "Radiografia", pacientes.get(0));
-        citas.add(_s);
+        ArrayList<SolicitudDonacion> citasD= new ArrayList<SolicitudDonacion>();
         //Id para agregar a los objetos
         int id = 1;
         boolean sMenu = true;
@@ -63,10 +38,11 @@ public class Hospital {
             String menu = ("-- Hospital El Salvador --"
                     + "\n1 - Medicos"
                     + "\n2 - Citas"
-                    + "\n3 - Pacientes"
-                    + "\n4 - Medicinas"
-                    + "\n5 - Personal"
-                    + "\n6 - Salir\n");
+                    + "\n3 - Citas Donacion"
+                    + "\n4 - Pacientes"
+                    + "\n5 - Medicinas"
+                    + "\n6 - Personal"
+                    + "\n7 - Salir\n");
             
             opMenu = ingresar.opcion(menu);
             
@@ -270,8 +246,106 @@ public class Hospital {
                         }
                     }
                     break;
-                //Menu Pacientes
                 case 3:
+                    while (sOpcion) {
+                        String menuC = ("-- Citas de Donacion --"
+                                + "\n1 - Nueva cita"
+                                + "\n2 - Borrar cita"
+                                + "\n3 - Buscar cita"
+                                + "\n4 - Mostrar citas"
+                                + "\n5 - Salir");
+                        int opCitas = ingresar.opcion(menuC);
+                        switch (opCitas) {
+                            //Nueva Cita
+                            case 1:
+                                    id++;
+                                    int idD = ingresar.addID("Ingrese el id de la cita: ");
+                                    String estado = ingresar.addNombre("Ingrese el estado: ");
+                                    Date fecha = ingresar.addFecha("ingrese la fecha de la cita");
+                                    String donante = ingresar.addNombre("Ingrese el nombre del donante:");
+                                    int dui = ingresar.addDUI("Ingrese el DUI del donante");
+
+                                    SolicitudDonacion _citasD = new SolicitudDonacion(id, estado, fecha, donante, dui);
+                                    citasD.add(_citasD);
+                                break;
+                            //Eliminar cita
+                            case 2:
+                                if (!citas.isEmpty()) {
+                                    boolean borrando = true;
+                                    int n = -1;
+                                    while (borrando) {
+                                        int idDel = ingresar.addID("Ingrese el numero de identificacion de la cita que desea eliminar:");
+                                        n = SolicitudDonacion.busquedaCita(citasD, idDel);
+                                        if (n == -1) {
+                                            System.out.println("El id de la cita no existe, por favor ingrese un id correcto!");
+                                        } else {
+                                            borrando = false;
+                                        }
+                                    }
+                                    citasD.remove(n);
+                                    System.out.println("Datos eliminados!");
+                                } else {
+                                    System.out.println("No existen datos para eliminar");
+                                }
+                                break;
+                            //Buscar cita
+                            case 3:
+                                if (!citasD.isEmpty()) {
+                                    boolean buscando = true;
+                                    int n = -1;
+                                    while (buscando) {
+                                        int idSrch = ingresar.addID("Ingrese el numero de identificacion de la cita que desea buscar:");
+                                        n = SolicitudDonacion.busquedaCita(citasD, idSrch);
+                                        if (n == -1) {
+                                            System.out.println("La cita no existe, por favor ingrese un numero de identificacion correcto!");
+                                        } else {
+                                            buscando = false;
+                                        }
+                                    }
+                                    String f;
+                                    System.out.println("ID::\t\tEstado:\tFecha:\tDonante:\tDUI:");
+                                    System.out.print(citasD.get(n).getIdSolicitud() + "\t");
+                                    System.out.print(citasD.get(n).getEstado() + "\t\t");
+                                    f = fechaFormato(citasD.get(n).getFecha());
+                                    System.out.print(f + "\t\t");
+                                    System.out.print(citasD.get(n).getDonante() + "\t\t");
+                                    System.out.print(citasD.get(n).getDUI() + "\t\t");
+
+                                } else {
+                                    System.out.println("No existen datos para buscar");
+                                }
+                                break;
+                            //Mostrar cita
+                            case 4:
+                                if (!citasD.isEmpty()) {
+                                    boolean mostrarM = true;
+                                    String f;
+                                    while (mostrarM) {
+                                        System.out.println("ID::\t\tEstado:\tFecha:\tDonante:\tDUI:");
+                                        for (int i = 0; i < citasD.size(); i++) {
+                                            System.out.print(citasD.get(i).getEstado() + "\t\t");
+                                            f = fechaFormato(citasD.get(i).getFecha());
+                                            System.out.print(f + "\t\t");
+                                            System.out.print(citasD.get(i).getDonante() + "\t\t");
+                                            System.out.print(citasD.get(i).getDUI() + "\n");
+                                        }
+                                        break;
+                                       
+                                    }
+                                }
+                                break;
+                            //Salir
+                            case 5:
+                                sOpcion = false;
+                                break;
+                            default:
+                                System.out.println("Ingrese una opcion valida");
+                                break;
+                        }
+                    }
+                    break;
+                //Menu Pacientes
+                case 4:
                     while(sOpcion){
                         String menuP = ("-- Pacientes --"
                                 + "\n1 - Agregar paciente"
@@ -374,7 +448,7 @@ public class Hospital {
                     }
                     break;
                 //Menu medicinas
-                case 4:
+                case 5:
                     while(sOpcion){
                         String menuMM = ("-- Medicina --"
                                 + "\n1 - Agregar medicina"
@@ -465,7 +539,7 @@ public class Hospital {
                     }
                     break;
                 //Menu Empleados
-                case 5:
+                case 6:
                     while(sOpcion){
                         String menuPer = ("-- Personal --"
                                 + "\n1 - Agregar empleado"
@@ -565,7 +639,7 @@ public class Hospital {
                         }
                     }
                     break;
-                case 6:
+                case 7:
                     System.out.println("Adios");
                     sMenu = false;
                     break;

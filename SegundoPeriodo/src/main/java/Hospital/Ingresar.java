@@ -20,7 +20,6 @@ public class Ingresar {
     // Metodo de ingreso de opcion
     public int opcion(String menu){
         int op = -1;
-        
         try {
             do {
                 System.out.println(menu);
@@ -32,7 +31,7 @@ public class Ingresar {
                op = sc.nextInt();
             } while (op <= 0);
        } catch (Exception e) {
-            System.out.println("Por favor, ingrese un dato valido");
+            throw new RuntimeException("Los datos que ingreso no eran validos!!!");
         }
         return op;
     }
@@ -49,7 +48,7 @@ public class Ingresar {
         }
         catch(Exception e)
         {
-            System.out.println("Ocurrio un error!!");
+            throw new RuntimeException("Los datos que ingreso no eran validos!!!");
         }
         return nombre;
     }
@@ -64,9 +63,9 @@ public class Ingresar {
             }
             while(!correo.matches("^[a-zA-Z0-9_!#$%&'\\*+/=?{|}~^.-]+@[a-zA-Z0-9.-]+$"));
         }
-        catch(Exception e)
+        catch(RuntimeException e)
         {
-            System.out.println("Ocurrio un error!!");
+            throw new RuntimeException("Los datos que ingreso no eran validos!!!");
         }
         return correo;
     }
@@ -83,9 +82,9 @@ public class Ingresar {
             while(!sID.matches("^[0-9]{9}$"));
             id = Integer.parseInt(sID);
         }
-        catch(NumberFormatException e)
+        catch(RuntimeException e)
         {
-            System.out.println("Ocurrio un error!!");
+            throw new RuntimeException("Los datos que ingreso no eran validos!!!");
         }
         return id;
     }
@@ -102,9 +101,9 @@ public class Ingresar {
             while(!sID.matches("^[0-9]{5}$"));
             id = Integer.parseInt(sID);
         }
-        catch(NumberFormatException e)
+        catch(RuntimeException e)
         {
-            System.out.println("Ocurrio un error!!");
+            throw new RuntimeException("Los datos que ingreso no eran validos!!!");
         }
         return id;
     }
@@ -119,9 +118,9 @@ public class Ingresar {
             }
             while(!telefono.matches("^[0-9]{4}-[0-9]{4}$"));
         }
-        catch(NumberFormatException e)
+        catch(RuntimeException e)
         {
-            System.out.println("Ocurrio un error!!");
+            throw new RuntimeException("Los datos que ingreso no eran validos!!!");
         }
         
         return telefono;
@@ -141,11 +140,11 @@ public class Ingresar {
             fechaDate = formato.parse(fecha);
         }
         catch(ParseException ex){
-            System.out.println("Ocurrio un error con la fecha!!");
+            throw new RuntimeException("Ocurrio un error con la fecha!!");
         }
-        catch(NumberFormatException e)
+        catch(RuntimeException e)
         {
-            System.out.println("Ocurrio un error!!");
+            throw new RuntimeException("Los datos que ingreso no eran validos!!!");
         }
         
         return fechaDate;
@@ -163,9 +162,9 @@ public class Ingresar {
             while(!dec.matches("^([0-9]{1,6}\\.[0-9]{2})$"));
             valor= Float.valueOf(dec);
         }
-        catch(NumberFormatException e)
+        catch(RuntimeException e)
         {
-            System.out.println("Ocurrio un error!!");
+            throw new RuntimeException("Los datos que ingreso no eran validos!!!");
         }
         return valor;
     }
