@@ -1,13 +1,14 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
+
 package Formularios.FormulariosMostrar;
 
 import Conexion.Conexion;
+import Formularios.frmMedicina;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -23,6 +24,7 @@ public class frmMostrarMedicina extends javax.swing.JFrame {
      */
     public frmMostrarMedicina() {
         initComponents();
+        mostrarDatos();
     }
 
     /**
@@ -36,57 +38,63 @@ public class frmMostrarMedicina extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tblMed = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        txtBuscar = new javax.swing.JTextField();
         btnBuscar = new javax.swing.JButton();
         btnRegresar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jPanel1.setBackground(new java.awt.Color(52, 52, 52));
+        jPanel1.setBackground(new java.awt.Color(204, 204, 204));
         jPanel1.setPreferredSize(new java.awt.Dimension(718, 380));
 
-        jTable1.setForeground(new java.awt.Color(153, 153, 153));
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tblMed.setForeground(new java.awt.Color(0, 0, 0));
+        tblMed.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {},
+                {},
+                {},
+                {}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+
             }
         ));
-        jTable1.addAncestorListener(new javax.swing.event.AncestorListener() {
+        tblMed.addAncestorListener(new javax.swing.event.AncestorListener() {
             public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
             }
             public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
-                jTable1AncestorMoved(evt);
+                tblMedAncestorMoved(evt);
             }
             public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
             }
         });
-        jScrollPane2.setViewportView(jTable1);
+        jScrollPane2.setViewportView(tblMed);
 
         jLabel1.setBackground(new java.awt.Color(255, 255, 255));
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Mostrar Medicina");
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel2.setForeground(new java.awt.Color(0, 0, 0));
         jLabel2.setText("ID Medicina:");
 
-        jTextField1.setToolTipText("");
+        txtBuscar.setForeground(new java.awt.Color(0, 0, 0));
+        txtBuscar.setToolTipText("");
+        txtBuscar.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtBuscarKeyReleased(evt);
+            }
+        });
 
         btnBuscar.setBackground(new java.awt.Color(102, 204, 255));
         btnBuscar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        btnBuscar.setForeground(new java.awt.Color(255, 255, 255));
-        btnBuscar.setText("Buscar");
+        btnBuscar.setForeground(new java.awt.Color(0, 0, 0));
+        btnBuscar.setText("Mostrar Todo");
         btnBuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnBuscarActionPerformed(evt);
@@ -94,6 +102,7 @@ public class frmMostrarMedicina extends javax.swing.JFrame {
         });
 
         btnRegresar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnRegresar.setForeground(new java.awt.Color(0, 0, 0));
         btnRegresar.setText("Regresar");
         btnRegresar.setActionCommand("");
         btnRegresar.addActionListener(new java.awt.event.ActionListener() {
@@ -118,7 +127,7 @@ public class frmMostrarMedicina extends javax.swing.JFrame {
                         .addComponent(btnBuscar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnRegresar))
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 370, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 370, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(195, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
@@ -133,7 +142,7 @@ public class frmMostrarMedicina extends javax.swing.JFrame {
                 .addGap(27, 27, 27)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnBuscar)
@@ -157,17 +166,48 @@ public class frmMostrarMedicina extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTable1AncestorMoved(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_jTable1AncestorMoved
+    private void tblMedAncestorMoved(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_tblMedAncestorMoved
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTable1AncestorMoved
+    }//GEN-LAST:event_tblMedAncestorMoved
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
-        // TODO add your handling code here:
+        mostrarDatos();
     }//GEN-LAST:event_btnBuscarActionPerformed
 
     private void btnRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegresarActionPerformed
-        // TODO add your handling code here:
+        frmMedicina md = new frmMedicina();
+        md.setVisible(true);
+        dispose();
     }//GEN-LAST:event_btnRegresarActionPerformed
+
+    private void txtBuscarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBuscarKeyReleased
+        String m = txtBuscar.getText();
+        DefaultTableModel tMedicina= new DefaultTableModel();
+        
+        tMedicina.addColumn("ID Medicina");
+        tMedicina.addColumn("Descripcion");
+        tblMed.setModel(tMedicina);
+        String []datos =new String[2];
+        java.sql.Connection con2 = null;
+        PreparedStatement pst = null;
+        
+        try{
+            con2 = cn.getConnection();
+            pst=con2.prepareStatement("SELECT * FROM `medicina` where idMedicina like'"+(m)+"%' LIMIT 1");
+            rs = pst.executeQuery();
+            while(rs.next())
+            {
+                datos[0]=rs.getString(1);
+                datos[1]=rs.getString(2);
+                tMedicina.addRow(datos);
+            }
+            tblMed.setModel(tMedicina);
+        }
+        catch(Exception e)
+        {
+            JOptionPane.showMessageDialog(this, "Ocurrio un error inesperado."+e);
+        }
+    }//GEN-LAST:event_txtBuscarKeyReleased
 
     /**
      * @param args the command line arguments
@@ -211,7 +251,38 @@ public class frmMostrarMedicina extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTable tblMed;
+    private javax.swing.JTextField txtBuscar;
     // End of variables declaration//GEN-END:variables
+    
+    public void mostrarDatos()
+    {
+        String m = txtBuscar.getText();
+        DefaultTableModel tMedicina= new DefaultTableModel();
+        
+        tMedicina.addColumn("ID Medicina");
+        tMedicina.addColumn("Descripcion");
+        tblMed.setModel(tMedicina);
+        String []datos =new String[2];
+        java.sql.Connection con2 = null;
+        PreparedStatement pst = null;
+        
+        try{
+            con2 = cn.getConnection();
+            pst=con2.prepareStatement("SELECT * FROM `medicina` ");
+            rs = pst.executeQuery();
+            while(rs.next())
+            {
+                datos[0]=rs.getString(1);
+                datos[1]=rs.getString(2);
+                tMedicina.addRow(datos);
+            }
+            tblMed.setModel(tMedicina);
+        }
+        catch(Exception e)
+        {
+            JOptionPane.showMessageDialog(this, "Ocurrio un error inesperado."+e);
+        }
+    }
+
 }

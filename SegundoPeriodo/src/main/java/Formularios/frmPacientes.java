@@ -39,15 +39,16 @@ public class frmPacientes extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jPanel6.setBackground(new java.awt.Color(51, 51, 51));
+        jPanel6.setBackground(new java.awt.Color(204, 204, 204));
 
         jLabel6.setBackground(new java.awt.Color(255, 255, 255));
         jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel6.setForeground(new java.awt.Color(0, 0, 0));
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel6.setText("Pacientes");
 
         btnAdd.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnAdd.setForeground(new java.awt.Color(0, 0, 0));
         btnAdd.setText("Agregar Paciente");
         btnAdd.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -56,6 +57,7 @@ public class frmPacientes extends javax.swing.JFrame {
         });
 
         btnDel.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnDel.setForeground(new java.awt.Color(0, 0, 0));
         btnDel.setText("Borrar Paciente");
         btnDel.setToolTipText("");
         btnDel.addActionListener(new java.awt.event.ActionListener() {
@@ -65,6 +67,7 @@ public class frmPacientes extends javax.swing.JFrame {
         });
 
         btnMostrar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnMostrar.setForeground(new java.awt.Color(0, 0, 0));
         btnMostrar.setText("Mostrar Paciente");
         btnMostrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -73,6 +76,7 @@ public class frmPacientes extends javax.swing.JFrame {
         });
 
         jButton32.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jButton32.setForeground(new java.awt.Color(0, 0, 0));
         jButton32.setText("Salir");
         jButton32.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

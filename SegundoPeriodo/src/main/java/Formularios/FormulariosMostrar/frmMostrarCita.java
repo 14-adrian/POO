@@ -5,6 +5,7 @@ package Formularios.FormulariosMostrar;
 import java.sql.PreparedStatement;
 import javax.swing.table.DefaultTableModel;
 import Conexion.Conexion;
+import Formularios.frmCitas;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -214,7 +215,9 @@ public class frmMostrarCita extends javax.swing.JFrame {
     }//GEN-LAST:event_btnBuscarActionPerformed
 
     private void btnRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegresarActionPerformed
-        // TODO add your handling code here:
+        frmCitas mc = new frmCitas();
+        mc.setVisible(true);
+        dispose();
     }//GEN-LAST:event_btnRegresarActionPerformed
 
     private void txtBuscarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBuscarKeyReleased

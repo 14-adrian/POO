@@ -5,9 +5,13 @@
 package Formularios.FormulariosDel;
 
 import Conexion.Conexion;
+import Formularios.frmCitas;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -36,54 +40,60 @@ public class frmDelCita extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tblCita = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        txtBuscar = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jPanel1.setBackground(new java.awt.Color(51, 51, 51));
+        jPanel1.setBackground(new java.awt.Color(204, 204, 204));
 
-        jTable1.setForeground(new java.awt.Color(153, 153, 153));
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tblCita.setForeground(new java.awt.Color(153, 153, 153));
+        tblCita.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {},
+                {},
+                {},
+                {}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+
             }
         ));
-        jTable1.addAncestorListener(new javax.swing.event.AncestorListener() {
+        tblCita.addAncestorListener(new javax.swing.event.AncestorListener() {
             public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
             }
             public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
-                jTable1AncestorMoved(evt);
+                tblCitaAncestorMoved(evt);
             }
             public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
             }
         });
-        jScrollPane2.setViewportView(jTable1);
+        jScrollPane2.setViewportView(tblCita);
 
         jLabel1.setBackground(new java.awt.Color(255, 255, 255));
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
         jLabel1.setText("Eliminar Cita");
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel2.setForeground(new java.awt.Color(0, 0, 0));
         jLabel2.setText("Id Cita");
 
-        jTextField1.setToolTipText("");
+        txtBuscar.setForeground(new java.awt.Color(0, 0, 0));
+        txtBuscar.setToolTipText("");
+        txtBuscar.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtBuscarKeyReleased(evt);
+            }
+        });
 
         jButton1.setBackground(new java.awt.Color(255, 0, 0));
         jButton1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(255, 255, 255));
+        jButton1.setForeground(new java.awt.Color(0, 0, 0));
         jButton1.setText("Eliminar");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -92,8 +102,8 @@ public class frmDelCita extends javax.swing.JFrame {
         });
 
         jButton2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jButton2.setForeground(new java.awt.Color(0, 0, 0));
         jButton2.setText("Regresar");
-        jButton2.setActionCommand("Regresar");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
@@ -118,7 +128,7 @@ public class frmDelCita extends javax.swing.JFrame {
                                 .addComponent(jButton1)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jButton2))
-                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 494, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 494, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(0, 116, Short.MAX_VALUE)))
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
@@ -134,7 +144,7 @@ public class frmDelCita extends javax.swing.JFrame {
                 .addGap(48, 48, 48)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(26, 26, 26)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
@@ -168,17 +178,82 @@ public class frmDelCita extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTable1AncestorMoved(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_jTable1AncestorMoved
+    private void tblCitaAncestorMoved(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_tblCitaAncestorMoved
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTable1AncestorMoved
+    }//GEN-LAST:event_tblCitaAncestorMoved
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+        java.sql.Connection con2 = null;
+        PreparedStatement pst = null;
+        
+        String m = txtBuscar.getText();
+        
+        try{
+            con2 = cn.getConnection();
+            pst=con2.prepareStatement("DELETE FROM cita WHERE `cita`.`idCita` = "
+                    + "(SELECT idCita FROM `cita` WHERE idCita like'"+(m)+"%' LIMIT 1)");
+            
+            pst.execute();
+            txtBuscar.setText("");
+            DefaultTableModel t= new DefaultTableModel();
+            t.setRowCount(0);
+            tblCita.setModel(t);
+            JOptionPane.showMessageDialog(this, "Cita Eliminada con Exito");
+            
+        }
+        catch(Exception e)
+        {
+            JOptionPane.showMessageDialog(this, "Ocurrio un error inesperado."+e);
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
+        frmCitas mc = new frmCitas();
+        mc.setVisible(true);
+        dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void txtBuscarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBuscarKeyReleased
+        String b = txtBuscar.getText();
+        DefaultTableModel tCita= new DefaultTableModel();
+        tCita.addColumn("ID");
+        tCita.addColumn("Medico");
+        tCita.addColumn("DUI Paciente");
+        tCita.addColumn("Nombre Paciente");
+        tCita.addColumn("Tipo Consulta");
+        tCita.addColumn("Fecha Solicitud");
+        tCita.addColumn("Estado");
+        tblCita.setModel(tCita);
+        String []datos =new String[7];
+        java.sql.Connection con2 = null;
+        PreparedStatement pst = null;
+        
+        try{
+            con2 = cn.getConnection();
+            pst=con2.prepareStatement("SELECT ct.idCita, md.nombre, ct.duiPaciente ,pc.nombrePaciente, ct.tipoConsulta, ct.fechaSolicitud, ct.estado\n" +
+                                                            "FROM `cita` ct\n" +
+                                                            "INNER JOIN medico md ON ct.idMedico = md.idMedico\n" +
+                                                            "INNER JOIN paciente pc ON ct.duiPaciente = pc.dui\n" +
+                                                            "WHERE ct.idCita like'"+(b)+"%' ORDER BY idCita");
+            rs = pst.executeQuery();
+            while(rs.next())
+            {
+                datos[0]=rs.getString(1);
+                datos[1]=rs.getString(2);
+                datos[2]=rs.getString(3);
+                datos[3]=rs.getString(4);
+                datos[4]=rs.getString(5);
+                datos[5]= rs.getString(6);
+                datos[6]=rs.getString(7);
+                tCita.addRow(datos);
+            }
+            tblCita.setModel(tCita);
+        }
+        catch(Exception e)
+        {
+            JOptionPane.showMessageDialog(this, "Ocurrio un error inesperado."+e);
+        }
+    }//GEN-LAST:event_txtBuscarKeyReleased
 
     /**
      * @param args the command line arguments
@@ -222,7 +297,7 @@ public class frmDelCita extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTable tblCita;
+    private javax.swing.JTextField txtBuscar;
     // End of variables declaration//GEN-END:variables
 }

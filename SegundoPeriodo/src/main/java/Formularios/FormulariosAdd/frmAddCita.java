@@ -254,7 +254,7 @@ public class frmAddCita extends javax.swing.JFrame {
              }
              else JOptionPane.showMessageDialog(this, "Ingrese los datos correctamente!!");
          }
-         else JOptionPane.showMessageDialog(this, "El ID deben ser 4 Numeros!!");
+         else JOptionPane.showMessageDialog(this, "El ID deben ser 7 Numeros!!");
     }//GEN-LAST:event_btnAddActionPerformed
 
     /**

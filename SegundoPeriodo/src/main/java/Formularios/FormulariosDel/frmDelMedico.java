@@ -49,11 +49,11 @@ public class frmDelMedico extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jPanel1.setBackground(new java.awt.Color(50, 50, 50));
+        jPanel1.setBackground(new java.awt.Color(204, 204, 204));
 
         jLabel6.setBackground(new java.awt.Color(255, 255, 255));
         jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel6.setForeground(new java.awt.Color(0, 0, 0));
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel6.setText("Eliminar Medico");
 
@@ -66,12 +66,12 @@ public class frmDelMedico extends javax.swing.JFrame {
         });
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
         jLabel1.setText("ID Medico:");
 
         btnDel.setBackground(new java.awt.Color(255, 51, 102));
         btnDel.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        btnDel.setForeground(new java.awt.Color(255, 255, 255));
+        btnDel.setForeground(new java.awt.Color(0, 0, 0));
         btnDel.setText("Eliminar");
         btnDel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -93,6 +93,7 @@ public class frmDelMedico extends javax.swing.JFrame {
         jScrollPane1.setViewportView(tblMedico);
 
         btnRegresar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnRegresar.setForeground(new java.awt.Color(0, 0, 0));
         btnRegresar.setText("Regresar");
         btnRegresar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
