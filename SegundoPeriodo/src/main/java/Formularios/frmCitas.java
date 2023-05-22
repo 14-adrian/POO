@@ -4,6 +4,10 @@
  */
 package Formularios;
 
+import Formularios.FormulariosAdd.frmAddCita;
+import Formularios.FormulariosDel.frmDelCita;
+import Formularios.FormulariosMostrar.frmMostrarCita;
+
 /**
  *
  * @author Leoni
@@ -28,41 +32,55 @@ public class frmCitas extends javax.swing.JFrame {
 
         jPanel6 = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
-        jButton28 = new javax.swing.JButton();
-        jButton29 = new javax.swing.JButton();
-        jButton31 = new javax.swing.JButton();
-        jButton32 = new javax.swing.JButton();
+        btnAdd = new javax.swing.JButton();
+        btnDel = new javax.swing.JButton();
+        btnMostrar = new javax.swing.JButton();
+        btnRegresar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jPanel6.setBackground(new java.awt.Color(51, 51, 51));
+        jPanel6.setBackground(new java.awt.Color(204, 204, 204));
 
         jLabel6.setBackground(new java.awt.Color(255, 255, 255));
         jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel6.setForeground(new java.awt.Color(0, 0, 0));
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel6.setText("Citas");
 
-        jButton28.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jButton28.setText("Nueva Cita");
-
-        jButton29.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jButton29.setText("Borrar Cita");
-        jButton29.setToolTipText("");
-        jButton29.addActionListener(new java.awt.event.ActionListener() {
+        btnAdd.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnAdd.setForeground(new java.awt.Color(0, 0, 0));
+        btnAdd.setText("Nueva Cita");
+        btnAdd.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton29ActionPerformed(evt);
+                btnAddActionPerformed(evt);
             }
         });
 
-        jButton31.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jButton31.setText("Mostrar Cita");
-
-        jButton32.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jButton32.setText("Salir");
-        jButton32.addActionListener(new java.awt.event.ActionListener() {
+        btnDel.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnDel.setForeground(new java.awt.Color(0, 0, 0));
+        btnDel.setText("Borrar Cita");
+        btnDel.setToolTipText("");
+        btnDel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton32ActionPerformed(evt);
+                btnDelActionPerformed(evt);
+            }
+        });
+
+        btnMostrar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnMostrar.setForeground(new java.awt.Color(0, 0, 0));
+        btnMostrar.setText("Mostrar Cita");
+        btnMostrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnMostrarActionPerformed(evt);
+            }
+        });
+
+        btnRegresar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnRegresar.setForeground(new java.awt.Color(0, 0, 0));
+        btnRegresar.setText("Salir");
+        btnRegresar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRegresarActionPerformed(evt);
             }
         });
 
@@ -75,15 +93,15 @@ public class frmCitas extends javax.swing.JFrame {
                     .addGroup(jPanel6Layout.createSequentialGroup()
                         .addGap(173, 173, 173)
                         .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jButton28, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButton29, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButton31, javax.swing.GroupLayout.DEFAULT_SIZE, 164, Short.MAX_VALUE))
+                            .addComponent(btnAdd, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnDel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnMostrar, javax.swing.GroupLayout.DEFAULT_SIZE, 164, Short.MAX_VALUE))
                         .addGap(0, 164, Short.MAX_VALUE))
                     .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
             .addGroup(jPanel6Layout.createSequentialGroup()
                 .addGap(218, 218, 218)
-                .addComponent(jButton32)
+                .addComponent(btnRegresar)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel6Layout.setVerticalGroup(
@@ -92,13 +110,13 @@ public class frmCitas extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel6)
                 .addGap(18, 18, 18)
-                .addComponent(jButton28)
+                .addComponent(btnAdd)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton29)
+                .addComponent(btnDel)
                 .addGap(18, 18, 18)
-                .addComponent(jButton31)
+                .addComponent(btnMostrar)
                 .addGap(138, 138, 138)
-                .addComponent(jButton32)
+                .addComponent(btnRegresar)
                 .addContainerGap(46, Short.MAX_VALUE))
         );
 
@@ -118,15 +136,29 @@ public class frmCitas extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton29ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton29ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton29ActionPerformed
+    private void btnDelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDelActionPerformed
+        frmDelCita mc = new frmDelCita();
+        mc.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_btnDelActionPerformed
 
-    private void jButton32ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton32ActionPerformed
+    private void btnRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegresarActionPerformed
         Menu menus = new Menu();
         menus.setVisible(true);
         dispose();    
-    }//GEN-LAST:event_jButton32ActionPerformed
+    }//GEN-LAST:event_btnRegresarActionPerformed
+
+    private void btnMostrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMostrarActionPerformed
+        frmMostrarCita mc = new frmMostrarCita();
+        mc.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_btnMostrarActionPerformed
+
+    private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
+        frmAddCita mc = new frmAddCita();
+        mc.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_btnAddActionPerformed
 
     /**
      * @param args the command line arguments
@@ -164,10 +196,10 @@ public class frmCitas extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton28;
-    private javax.swing.JButton jButton29;
-    private javax.swing.JButton jButton31;
-    private javax.swing.JButton jButton32;
+    private javax.swing.JButton btnAdd;
+    private javax.swing.JButton btnDel;
+    private javax.swing.JButton btnMostrar;
+    private javax.swing.JButton btnRegresar;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel6;
     // End of variables declaration//GEN-END:variables

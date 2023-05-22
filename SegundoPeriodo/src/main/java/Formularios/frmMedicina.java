@@ -4,6 +4,10 @@
  */
 package Formularios;
 
+import Formularios.FormulariosAdd.frmAddMedicina;
+import Formularios.FormulariosDel.frmDelMedicina;
+import Formularios.FormulariosMostrar.frmMostrarMedicina;
+
 /**
  *
  * @author Leoni
@@ -28,9 +32,9 @@ public class frmMedicina extends javax.swing.JFrame {
 
         jPanel6 = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
-        jButton28 = new javax.swing.JButton();
-        jButton29 = new javax.swing.JButton();
-        jButton31 = new javax.swing.JButton();
+        btnAdd = new javax.swing.JButton();
+        btnDel = new javax.swing.JButton();
+        btnMostrar = new javax.swing.JButton();
         jButton32 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -43,20 +47,30 @@ public class frmMedicina extends javax.swing.JFrame {
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel6.setText("Medicinas");
 
-        jButton28.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jButton28.setText("Agregar Medicina");
-
-        jButton29.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jButton29.setText("Borrar Medicina");
-        jButton29.setToolTipText("");
-        jButton29.addActionListener(new java.awt.event.ActionListener() {
+        btnAdd.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnAdd.setText("Agregar Medicina");
+        btnAdd.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton29ActionPerformed(evt);
+                btnAddActionPerformed(evt);
             }
         });
 
-        jButton31.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jButton31.setText("Mostrar Medicina");
+        btnDel.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnDel.setText("Borrar Medicina");
+        btnDel.setToolTipText("");
+        btnDel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDelActionPerformed(evt);
+            }
+        });
+
+        btnMostrar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnMostrar.setText("Mostrar Medicina");
+        btnMostrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnMostrarActionPerformed(evt);
+            }
+        });
 
         jButton32.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jButton32.setText("Salir");
@@ -75,9 +89,9 @@ public class frmMedicina extends javax.swing.JFrame {
                     .addGroup(jPanel6Layout.createSequentialGroup()
                         .addGap(173, 173, 173)
                         .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jButton28, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButton29, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButton31, javax.swing.GroupLayout.DEFAULT_SIZE, 164, Short.MAX_VALUE))
+                            .addComponent(btnAdd, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnDel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnMostrar, javax.swing.GroupLayout.DEFAULT_SIZE, 164, Short.MAX_VALUE))
                         .addGap(0, 164, Short.MAX_VALUE))
                     .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
@@ -92,11 +106,11 @@ public class frmMedicina extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel6)
                 .addGap(18, 18, 18)
-                .addComponent(jButton28)
+                .addComponent(btnAdd)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton29)
+                .addComponent(btnDel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton31)
+                .addComponent(btnMostrar)
                 .addGap(144, 144, 144)
                 .addComponent(jButton32)
                 .addContainerGap(46, Short.MAX_VALUE))
@@ -116,15 +130,29 @@ public class frmMedicina extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton29ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton29ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton29ActionPerformed
+    private void btnDelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDelActionPerformed
+        frmDelMedicina m = new frmDelMedicina();
+        m.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_btnDelActionPerformed
 
     private void jButton32ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton32ActionPerformed
          Menu menus = new Menu();
         menus.setVisible(true);
         dispose();      
     }//GEN-LAST:event_jButton32ActionPerformed
+
+    private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
+        frmAddMedicina m = new frmAddMedicina();
+        m.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_btnAddActionPerformed
+
+    private void btnMostrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMostrarActionPerformed
+        frmMostrarMedicina m = new frmMostrarMedicina();
+        m.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_btnMostrarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -162,9 +190,9 @@ public class frmMedicina extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton28;
-    private javax.swing.JButton jButton29;
-    private javax.swing.JButton jButton31;
+    private javax.swing.JButton btnAdd;
+    private javax.swing.JButton btnDel;
+    private javax.swing.JButton btnMostrar;
     private javax.swing.JButton jButton32;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel6;
